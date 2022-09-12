@@ -81,7 +81,8 @@ $(".date").flatpickr({
             </div>
 
             <div class="wrap-form-style03">
-            {!! Form::open(['route' => 'booking', 'class' => 'comment-form comment-form-style03']) !!}
+            <form method="POST" class="comment-form comment-form-style03" action="{{ route('booking') }}">
+            {{ csrf_token() }}
                     <fieldset class="phone-wrap ">
                         <input type="text" id="phone" placeholder="Name" class="tb-my-input" name="name"
                             tabindex="1" value="{{ auth()->check() ? auth()->user()->name : '' }}" aria-required="true" required="">

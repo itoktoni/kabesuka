@@ -29,7 +29,6 @@ Route::get(
         $detail = Booking::where('booking_status', BookingType::Process)
         ->where('booking_date', date('Y-m-d'))
         ->get();
-        dd($detail);
         return view(Helper::setViewDashboard('table'))->with(['detail' => $detail]);
     }
 )->name('timer');

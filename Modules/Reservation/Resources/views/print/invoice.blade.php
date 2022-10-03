@@ -256,7 +256,7 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
     <div id='page'>
         <div>
             <h2 style="text-align: center;margin-top:0px;margin-bottom:-20px">
-                <img id="logo" style="height:80px;" src="{{ public_path('files/logo/'.env('WEBSITE_LOGO')) }}" alt="">
+                <img id="logo" style="height:80px;" src="{{ public_path('files/logo/black.png') }}" alt="">
             </h2>
             <hr style="border:none;border-top: dotted 1px;">
             <h3 style="text-align: center;margin-top:0px;margin-bottom:0px;">
@@ -369,7 +369,7 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
         <div>
             <h5 class="description" style="margin-top:20px;margin-bottom:20px;line-height: 5px;">
                 <span>
-                   Tanggal : {{ $master->booking_start_time->format('Y-m-d') }} Jam : {{ $master->booking_start_time->format('H:i:s') }} - {{ $master->booking_end_time->format('H:i:s') }}
+                   Tanggal : {{ $master->booking_start_time->format('Y-m-d') }} - Jam : {{ $master->booking_start_time->format('H:i:s') }} - {{ $master->booking_end_time->format('H:i:s') }}
                 </span>
             </h5>
         </div>

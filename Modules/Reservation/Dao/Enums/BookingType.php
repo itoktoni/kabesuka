@@ -20,9 +20,9 @@ class BookingType extends Enum
     {
         return [
             self::Create => ColorType::Primary,
-            self::Booked => ColorType::Success,
-            self::Process => ColorType::Danger,
-            self::Finish => ColorType::Danger,
+            self::Booked => ColorType::Warning,
+            self::Process => ColorType::Info,
+            self::Finish => ColorType::Success,
             self::Cancel => ColorType::Danger,
         ];
     }

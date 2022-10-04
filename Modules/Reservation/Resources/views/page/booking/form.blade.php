@@ -192,7 +192,7 @@
 
     {!! Form::label('name', __('Pembayaran'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
     <div class="col-md-2 col-sm-2 {{ $errors->has('booking_metode') ? 'has-error' : ''}}">
-        {{ Form::select('booking_metode', ['CASH' => 'CASH', 'QRIS' => 'QRIS'], null, ['class'=> 'form-control ']) }}
+        {{ Form::select('booking_metode', ['CASH' => 'CASH', 'DEBIT' => 'DEBIT', 'QRIS' => 'QRIS'], null, ['class'=> 'form-control ']) }}
         {!! $errors->first('booking_metode', '<p class="help-block">:message</p>') !!}
     </div>
 

@@ -877,7 +877,7 @@ class Helper
 
     public static function createRupiah($value)
     {
-        return number_format($value, 0, ',', '.');
+        return number_format($value, 0, '.', ',');
     }
 
     public static function penyebut($nilai)

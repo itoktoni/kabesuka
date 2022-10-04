@@ -26,16 +26,22 @@
 
 <div class="form-group">
 
-    {!! Form::label('name', __('Payment'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-4 col-sm-4 {{ $errors->has('booking_metode') ? 'has-error' : ''}}">
-        {{ Form::select('booking_metode', ['' => 'Select Payment', 'CASH' => 'CASH', 'QRIS' => 'QRIS'], request()->get('booking_metode') ?? null, ['class'=> 'form-control ']) }}
+    {!! Form::label('name', __('Payment'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-3 col-sm-3 {{ $errors->has('booking_metode') ? 'has-error' : ''}}">
+        {{ Form::select('booking_metode', ['' => 'Select Payment', 'CASH' => 'CASH', 'DEBIT' => 'DEBIT', 'QRIS' => 'QRIS'], request()->get('booking_metode') ?? null, ['class'=> 'form-control ']) }}
         {!! $errors->first('booking_metode', '<p class="help-block">:message</p>') !!}
     </div>
 
-    {!! Form::label('name', __('Member'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-4 col-sm-4 {{ $errors->has('booking_member_id') ? 'has-error' : ''}}">
+    {!! Form::label('name', __('Member'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-3 col-sm-3 {{ $errors->has('booking_member_id') ? 'has-error' : ''}}">
         {{ Form::select('booking_member_id', $customer, request()->get('booking_member_id') ?? null, ['class'=> 'form-control ']) }}
         {!! $errors->first('booking_member_id', '<p class="help-block">:message</p>') !!}
+    </div>
+
+    {!! Form::label('name', __('Status'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-3 col-sm-3 {{ $errors->has('booking_status') ? 'has-error' : ''}}">
+        {{ Form::select('booking_status', $booking, request()->get('booking_status') ?? null, ['class'=> 'form-control ']) }}
+        {!! $errors->first('booking_status', '<p class="help-block">:message</p>') !!}
     </div>
 
 </div>

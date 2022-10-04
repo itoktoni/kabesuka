@@ -10,6 +10,7 @@ use Modules\Procurement\Dao\Repositories\SupplierRepository;
 use Modules\Report\Dao\Repositories\ReportBookingFinance;
 use Modules\Report\Dao\Repositories\ReportPurchaseFinance;
 use Modules\Report\Dao\Repositories\ReportPurchaseSummary;
+use Modules\Reservation\Dao\Enums\BookingType;
 use Modules\System\Dao\Repositories\TeamRepository;
 use Modules\System\Http\Services\ReportService;
 use Modules\System\Plugins\Views;
@@ -29,6 +30,7 @@ class FinanceController extends Controller
         $customer = Views::option(new TeamRepository());
         $supplier = Views::option(new SupplierRepository());
         $status = PurchaseStatus::getOptions();
+        $booking = array_merge(['' => 'Semua Status'], BookingType::getOptions());
 
         $view = [
             'supplier' => $supplier,
@@ -36,6 +38,7 @@ class FinanceController extends Controller
             'customer' => $customer,
             'user' => $user,
             'status' => $status,
+            'booking' => $booking,
         ];
 
         return array_merge($view, $data);

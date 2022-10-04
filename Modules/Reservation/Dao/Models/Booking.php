@@ -75,6 +75,7 @@ class Booking extends Model
     protected $filters = [
         'booking_member_id',
         'booking_metode',
+        'booking_status',
     ];
 
     const CREATED_AT = 'booking_created_at';

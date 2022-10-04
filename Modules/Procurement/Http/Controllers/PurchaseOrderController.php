@@ -135,7 +135,7 @@ class PurchaseOrderController extends Controller
         ]));
     }
 
-    public function update($code, PurchaseRequest $request, PurchaseUpdateService $service)
+    public function update($code, PurchaseRequest $request, PurchaseReceiveService $service)
     {
         $data = $service->update(self::$model, $request, $code);
         return Response::redirectBack($data);

@@ -13,7 +13,7 @@ class CreateService
         try {
 
             $insert = $data->all();
-            $insert['email_verified_at'] == date('Y-m-d H:i:s');
+            $insert['email_verified_at'] = date('Y-m-d H:i:s');
 
             $check = $repository->saveRepository($insert);
             if(isset($check['status']) && $check['status']){

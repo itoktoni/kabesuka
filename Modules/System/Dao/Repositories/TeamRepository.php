@@ -31,7 +31,9 @@ class TeamRepository extends User implements CrudInterface
     {
         try {
             $update = $this->findOrFail($code);
-            $request['password'] = bcrypt($request['password']);
+            if(!empty($request['password'])){
+                $request['password'] = bcrypt($request['password']);
+            }
             $update->update($request);
             return Notes::update($update);
         } catch (QueryException $ex) {

@@ -11,6 +11,10 @@ class UpdateService
     {
         $update = $data->all();
         $update['email_verified_at'] = date('Y-m-d H:i:s');
+
+        if(empty($update['password'])){
+            unset($update['password']);
+        }
         $check = $repository->updateRepository($update, $code);
         if ($check['status']) {
             if(request()->wantsJson()){

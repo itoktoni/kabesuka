@@ -240,12 +240,12 @@ class BookingController extends Controller
     public function printInvoice($code){
         $model = $this->get($code);
 
-        $end = Carbon::parse(date('Y-m-d H:i:s'))
-        ->addMinutes(env('WAKTU_MAKAN', 90))
-        ->format('Y-m-d H:i:s');
-        $model->booking_start_time = date('Y-m-d H:i:s');
-        $model->booking_end_time = $end;
-        $model->save();
+        // $end = Carbon::parse(date('Y-m-d H:i:s'))
+        // ->addMinutes(env('WAKTU_MAKAN', 90))
+        // ->format('Y-m-d H:i:s');
+        // $model->booking_start_time = date('Y-m-d H:i:s');
+        // $model->booking_end_time = $end;
+        // $model->save();
 
         $dewasa = $model->booking_dewasa_qty > 0 ? 1 : 0;
         $lansia = $model->booking_lansia_qty > 0 ? 1 : 0;

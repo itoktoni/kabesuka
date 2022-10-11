@@ -15,7 +15,8 @@ class Meja extends Model
     protected $fillable = [
         'meja_code',
         'meja_name',
-        'meja_capacity',
+        'meja_capacity_start',
+        'meja_capacity_end',
         'meja_description',
     ];
 

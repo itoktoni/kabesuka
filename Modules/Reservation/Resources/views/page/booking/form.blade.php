@@ -16,7 +16,7 @@
         <td>
             @foreach(Adapter::getBookingMejaDate($key, date('Y-m-d')) as $booked)
             <a href="{{ route('reservation_booking_edit', ['code' => $booked->booking_id]) }}" class="btn btn-block {{ $booked->booking_start_time ? 'btn-danger' : 'btn-default' }}">
-                <b>{{ substr($booked->booking_code, -3) ?? '' }}</b> <br> {{ $booked->booking_name }}  {!! $booked->booking_start_date ? '<br> Datang : '.substr($booked->booking_start_date, 11, 5) : '' !!}
+                <b>{{ substr($booked->booking_code, -3) ?? '' }}</b> <br> {{ $booked->booking_name }}  {!! $booked->booking_start_date ? '<br> : '.substr($booked->booking_start_date, 11, 5) : '' !!}
             </a>
             @endforeach
         </td>

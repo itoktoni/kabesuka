@@ -205,7 +205,7 @@ class BookingController extends Controller
                 'apikey' => env('QRIS_KEY'),
                 'mID' => env('QRIS_MID'),
                 'invid' => $model->booking_qris_invoiceid,
-                'trxvalue' => 1,
+                'trxvalue' => $model->booking_summary,
                 'trxdate' => $model->booking_qris_date,
             ])->get();
 

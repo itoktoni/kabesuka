@@ -24,7 +24,7 @@ class BookingUpdateService
                         'apikey' => env('QRIS_KEY'),
                         'mID' => env('QRIS_MID'),
                         'cliTrxNumber' => $code,
-                        'cliTrxAmount' => env('APP_ENV') ? 1 : $data['booking_summary'],
+                        'cliTrxAmount' => env('APP_ENV') == 'local' ? 1 : $data['booking_summary'],
                     ])->get();
 
                     $content = json_decode($get_qris);

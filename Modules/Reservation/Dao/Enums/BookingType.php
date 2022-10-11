@@ -14,7 +14,8 @@ class BookingType extends Enum
     const Create = 1;
     const Booked = 2;
     const Process = 3;
-    const Finish = 4;
+    const Table = 4;
+    const Finish = 5;
 
     public static function colors()
     {
@@ -23,6 +24,7 @@ class BookingType extends Enum
             self::Booked => ColorType::Warning,
             self::Process => ColorType::Info,
             self::Finish => ColorType::Success,
+            self::Table => ColorType::Brown,
             self::Cancel => ColorType::Danger,
         ];
     }

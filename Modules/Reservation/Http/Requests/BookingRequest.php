@@ -25,6 +25,7 @@ class BookingRequest extends FormRequest
 
                 $data['booking_start_time'] = date('Y-m-d H:i:s');
                 $data['booking_end_time'] = $end;
+                $data['booking_status'] = BookingType::Table;
             }
         }
 

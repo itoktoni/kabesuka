@@ -9,7 +9,9 @@ class UpdateService
 {
     public function update(CrudInterface $repository, $data, $code)
     {
-        $check = $repository->updateRepository($data->all(), $code);
+        $update = $data->all();
+        $update['email_verified_at'] == date('Y-m-d H:i:s');
+        $check = $repository->updateRepository($update, $code);
         if ($check['status']) {
             if(request()->wantsJson()){
                 return response()->json($check)->getData();

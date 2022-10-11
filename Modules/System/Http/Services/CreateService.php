@@ -11,7 +11,11 @@ class CreateService
     {
         $check = false;
         try {
-            $check = $repository->saveRepository($data->all());
+
+            $insert = $data->all();
+            $insert['email_verified_at'] == date('Y-m-d H:i:s');
+
+            $check = $repository->saveRepository($insert);
             if(isset($check['status']) && $check['status']){
                 $data['email_verified_at'] == date('Y-m-d H:i:s');
                 Alert::create();

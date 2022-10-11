@@ -276,4 +276,20 @@ class BookingController extends Controller
         $pdf = PDF::loadView(Helper::setViewPrint('invoice', config('folder')), $data)->setPaper(array( 0 , 0 , 226 , 350 + ($total * 20) ));
         return $pdf->stream();
     }
+
+    public function printAntrian($code){
+        $model = $this->get($code);
+        $dewasa = $model->booking_dewasa_qty > 0 ? 1 : 0;
+        $lansia = $model->booking_lansia_qty > 0 ? 1 : 0;
+        $anak = $model->booking_anak_qty > 0 ? 1 : 0;
+
+        $total = $dewasa + $lansia + $anak;
+        $data = [
+            'master' => $model,
+            'total' => $total,
+        ];
+
+        $pdf = PDF::loadView(Helper::setViewPrint('antrian', config('folder')), $data)->setPaper(array( 0 , 0 , 226 , 180 ));
+        return $pdf->stream();
+    }
 }

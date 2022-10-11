@@ -90,11 +90,12 @@ class Booking extends Model
         'booking_status' => 'integer',
         'booking_start_time' => 'datetime',
         'booking_end_time' => 'datetime',
+        'booking_created_at' => 'datetime',
     ];
 
     // public $with = ['module'];
 
-    public $timestamps = false;
+    public $timestamps = true;
     public $incrementing = true;
     public $rules = [
         'booking_qty' => 'required',

@@ -23,6 +23,7 @@
         @case('edit')
         <a id="linkMenu" href="{!! route($route_index) !!}" class="btn btn-warning">{{ __('Back') }}</a>
         <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+        <a target="_blank" href="{!! route('reservation_booking_print_antrian', ['code' => $model->booking_id]) !!}" class="btn btn-info">{{ __('Print Antrian') }}</a>
         @if($model->booking_metode == 'QRIS')
         <a target="_blank" href="{!! route('reservation_booking_print_qris', ['code' => $model->booking_id]) !!}" class="btn btn-success">{{ __('Print QRIS') }}</a>
         @endif

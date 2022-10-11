@@ -24,7 +24,7 @@ class BookingRequest extends FormRequest
                 ->format('Y-m-d H:i:s');
 
                 $data['booking_start_time'] = date('Y-m-d H:i:s');
-                $data['booking_end_time'] = date('Y-m-d H:i:s');
+                $data['booking_end_time'] = $end;
             }
         }
 

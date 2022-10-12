@@ -26,7 +26,7 @@ Route::match(
 Route::get(
     'timer',
     function () {
-        $detail = Booking::where('booking_status', BookingType::Process)
+        $detail = Booking::where('booking_status', BookingType::Table)
         ->where('booking_date', date('Y-m-d'))
         ->get();
         return view(Helper::setViewDashboard('table'))->with(['detail' => $detail]);

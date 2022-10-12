@@ -43,7 +43,8 @@ class PublicController extends Controller
     {
         $default_slider = Helper::createOption(new SliderRepository(), false, true);
         $data_category = DB::table('category')->where('category_frontend', 1)->get();
-        $data_product = Helper::createOption(new ProductRepository(), false, true);
+        $data_product = Product::limit(4)->get();
+        // $data_product = Helper::createOption(new ProductRepository(), false, true);
         $data_sosmed = Helper::shareOption(new SosmedRepository(),false,true);
         $jam = [
             null => '- Pilih Jam -',

@@ -8,8 +8,7 @@
                             <img src="{{ Helper::frontend('img/logo/logo.png') }}" alt="">
                         </a>
                     </div>
-                    <p class="sub-heading-style2" style="margin-left: 50px;margin-top:-20px">Posum dolor sit amet,
-                        consectetur adipiscing elit sed do
+                    <p class="sub-heading-style2" style="margin-left: 50px;margin-top:-20px">
                         {{ env('WEBSITE_DESCRIPTION') }}
                     </p>
                     <ul class="widget_socials" style="margin-left: 50px;">

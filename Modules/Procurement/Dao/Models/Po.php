@@ -381,7 +381,7 @@ class Po extends Model
 
     public function has_user()
     {
-        return $this->hasone(User::class, TeamFacades::getKeyName(), self::UPDATED_BY);
+        return $this->hasone(User::class, TeamFacades::getKeyName(), self::CREATED_BY);
     }
 
     public function has_supplier()

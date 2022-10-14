@@ -40,6 +40,7 @@ use Modules\System\Plugins\Alert;
 use Modules\System\Plugins\Helper;
 use Modules\System\Plugins\Response;
 use Modules\System\Plugins\Views;
+use PDF;
 
 class PurchaseOrderController extends Controller
 {
@@ -313,5 +314,14 @@ class PurchaseOrderController extends Controller
     {
         $check = $service->delete($code);
         return Response::redirectBack();
+    }
+
+    public function printOrder($code)
+    {
+        $data = $this->get($code);
+        $pdf = PDF::loadView(Views::pdf(config('page'), config('folder'), 'print_order'), [
+            'master' => $data
+        ]);
+        return $pdf->stream();
     }
 }

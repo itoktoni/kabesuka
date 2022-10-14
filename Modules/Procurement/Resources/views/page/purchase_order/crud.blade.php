@@ -22,8 +22,8 @@
         @break
 
         @case('edit')
-        <a target="_blank" href="{!! route($route_index) !!}" class="btn btn-danger">{{ __('Print') }}</a>
-        <a id="linkMenu" href="{!! route('procurement_purchase_order_print_order', ['code' => $model->{$model->getKeyName()} ]) !!}" class="btn btn-warning">{{ __('Back') }}</a>
+        <a href="{!! route($route_index) !!}" class="btn btn-warning">{{ __('Back') }}</a>
+        <a id="linkMenu" href="{!! route('procurement_purchase_order_print_order', ['code' => $model->{$model->getKeyName()} ]) !!}" class="btn btn-warning">{{ __('Cetak') }}</a>
         @if(isset($actions['update']) && ($model->mask_status == PurchaseStatus::Create))
         <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
         @endif

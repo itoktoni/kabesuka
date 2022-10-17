@@ -25,7 +25,7 @@
                 <input type="hidden" value="{{ $item['temp_id'] ?? $item->po_detail_product_id }}" name="detail[{{ $loop->index }}][temp_id]">
             </td>
             <td data-title="Product">
-                <input type="text" readonly class="form-control input-sm" value="{{ $item['temp_product'] ?? $item->has_product->product_name }}" name="detail[{{ $loop->index }}][temp_product]">
+                <input type="text" readonly class="form-control input-sm" value="{{ $item['temp_product'] ?? $item->has_product->product_name ?? '' }}" name="detail[{{ $loop->index }}][temp_product]">
             </td>
             <td data-title="Description">
                 <textarea rows="2" readonly class="form-control input-sm" name="detail[{{ $loop->index }}][temp_desc]">{{ $item['temp_desc'] ?? $item->has_product->product_description }}</textarea>

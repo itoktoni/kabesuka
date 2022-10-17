@@ -28,14 +28,14 @@ class PurchaseReceiveService extends UpdateService
                 $stock = Stock::where(StockFacades::mask_location_id(), $data->get('po_location_id'))
                     ->where(StockFacades::mask_product_id(), $data_stock['po_detail_product_id'])->first();
                     if ($stock) {
-                        $total = $stock->stock_qty + $data_stock['po_detail_receive'];
+                        $total = $stock->stock_qty + $data_stock['po_detail_qty'];
                         $stock->stock_qty = $total;
                         $stock->save();
                 } else {
                     StockFacades::create([
                         'stock_location_id' => $data->get('po_location_id'),
                         'stock_product_id' => $data_stock['po_detail_product_id'],
-                        'stock_qty' => $data_stock['po_detail_receive'],
+                        'stock_qty' => $data_stock['po_detail_qty'],
                     ]);
                 }
             }

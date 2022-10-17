@@ -14,7 +14,7 @@ $total = 0;
 		<div>
 			<div>
 				<div class="logo">
-					<img class="logo" style="margin-top:-70px;margin-left:-60px;margin-bottom:-30px;width:400px;"
+					<img class="logo" style="margin-top:-50px;margin-left:-60px;margin-bottom:-30px;width:400px;"
 						src="{!! Helper::print('logo/mobile.png') !!}" alt="">
                 </div>
 

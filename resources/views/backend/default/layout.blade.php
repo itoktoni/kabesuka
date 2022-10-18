@@ -18,7 +18,7 @@
     @stack('css')
 
     <script src="{{ Helper::backend('javascripts/main.js') }}"></script>
-    
+
     @if(env('ENABLE_PJAX'))
     <script src="{{ Helper::backend('vendor/trumbowyg/trumbowyg.min.js') }}"></script>
     <script src="{{ Helper::backend('vendor/trumbowyg/trumbowyg.resizimg.min.js') }}"></script>
@@ -52,7 +52,7 @@
                         style="color:#A6A3A3;margin-top:15px;z-index: 1;">
                         @if(env('ENABLE_NOTIFICATION'))
                         <marquee>
-                            <span>test</span>
+                            <span></span>
                         </marquee>
                         @endif
                     </span>

@@ -289,7 +289,7 @@ class BookingController extends Controller
             'total' => $total,
         ];
 
-        $pdf = PDF::loadView(Helper::setViewPrint('antrian', config('folder')), $data)->setPaper(array( 0 , 0 , 226 , 180 ));
+        $pdf = PDF::loadView(Helper::setViewPrint('antrian', config('folder')), $data)->setPaper(array( 0 , 0 , 226 , 380 ));
         return $pdf->stream();
     }
 }

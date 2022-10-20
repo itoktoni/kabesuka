@@ -278,12 +278,16 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
 
         </table>
 
-        <div>
-            <h5 class="description" style="margin-top:20px;margin-bottom:20px;line-height: 5px;">
-                <span>
-                   ...
-                </span>
+        <div style="border-top: 0.5px solid grey;margin-top:30px">
+            <h5 class="description" style="margin-top:100px;width:100%;margin-bottom:20px;line-height: 5px;">
+                <p style="text-align: center;width:100%;font-size:10px">
+                    {{ env('WEBSITE_ADDRESS') }} <br>Phone : {{ env('WEBSITE_PHONE') }}
+                </p>
             </h5>
+        </div>
+
+        <div class="span" style="text-align: center;">
+            ...
         </div>
 </body>
 

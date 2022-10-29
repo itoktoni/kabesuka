@@ -62,22 +62,43 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        // if (env('ENABLE_FRONTEND', true) && auth()->user()->group_user == GroupUserType::Customer) {
-        //     return redirect('/');
-        // }
+        if (env('ENABLE_FRONTEND', true) && auth()->user()->group_user == GroupUserType::Customer) {
+            return redirect('/');
+        }
 
-        // $username = auth()->user()->username;
+        $username = auth()->user()->username;
 
-        // $chart = new HomeChart();
-        // $chart->labels(['One', 'Two', 'Three', 'Four']);
-        // $chart->dataset('My dataset', 'line', [1, 2, 3, 4])->backgroundColor('#0088cc')->fill(true);
-        // $chart->dataset('My dataset 2', 'line', [4, 3, 2, 1])->backgroundColor('#ddf1fa')->fill(true);
-        // $chart->options([
-        //     'tooltip' => [
-        //         'show' => true // or false, depending on what you want.
-        //     ]
-        // ]);
+        $chart = new HomeChart();
+        $month = [];
 
+        for ($m=1; $m<=12; $m++) {
+            $month[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
+            $booking = Booking::whereMonth('booking_date', $m)
+            ->whereYear('booking_date', date('Y'))
+            ->where('booking_status', '>=', BookingType::Table)->get();
+            $qty[] = $booking->sum('booking_qty');
+            $value[] = $booking->sum('booking_summary');
+        }
+
+        $chart->labels($month);
+        $chart->dataset('Total Value Per Bulan', 'bar', $value)->backgroundColor('#0088cc')->fill(true);
+        // $chart->dataset('Target', 'bar', [])->backgroundColor('#ddf1fa')->fill(true);
+        // $chart->dataset('Value', 'bar', $value)->backgroundColor('#ddf1fa')->fill(true);
+        $chart->options([
+            'tooltip' => [
+                'show' => true // or false, depending on what you want.
+            ]
+        ]);
+
+        if(auth()->user()->group_user == GroupUserType::Customer){
+            return redirect()->to('/');
+        }
+
+        return view(Views::form('dashboard', 'home'), ['chart' => $chart]);
+    }
+
+    public function timers()
+    {
         if(auth()->user()->group_user == GroupUserType::Customer){
             return redirect()->to('/');
         }

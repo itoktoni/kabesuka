@@ -38,7 +38,7 @@ class AccessMiddleware
     public static $list_group_module;
 
     public $white_list = [
-        'home', 'beranda', 'dashboard', 'console', 'configuration', 'route', 'file', 'livewire', 'user', 'profile', 'language',
+        'home', 'beranda','timers', 'dashboard', 'console', 'configuration', 'route', 'file', 'livewire', 'user', 'profile', 'language',
     ];
 
     public function __construct(Action $action, Module $module, ModuleConnectionAction $module_connection_action, GroupModuleConnectionModule $group_module_connection_module, GroupModuleRepository $group_module)
@@ -80,7 +80,7 @@ class AccessMiddleware
         if (!$access) {
             abort(403);
         }
-        
+
         $route = request()->route() ?? false;
         $module = request()->segment(2) ?? false;
         $action_code = $route->getName() ?? 'home';
@@ -112,7 +112,7 @@ class AccessMiddleware
                 abort(403);
             }
 
-            
+
             $groupping = $access->where('system_action_code', $action_code)->where('system_group_module_code', self::$groupAccess)->first();
             if ($groupping) {
                 $folder = $groupping->system_module_folder;

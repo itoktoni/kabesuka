@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Modules\Item\Dao\Facades\MakananFacades;
 use Modules\Item\Dao\Facades\ProductFacades;
+use Modules\Item\Dao\Repositories\MakananRepository;
 use Modules\Item\Dao\Repositories\ProductRepository;
 use Modules\Procurement\Dao\Facades\StockFacades;
 use Modules\System\Plugins\Helper;
@@ -127,3 +129,40 @@ Route::match(
         return $query;
     }
 )->name('area_api');
+
+Route::match(
+    [
+        'GET',
+        'POST'
+    ],
+    'makanan_api',
+    function () {
+        $input = request()->get('id');
+
+        $product = new MakananRepository();
+        $query = false;
+        if ($input) {
+            $query = $product->dataRepository()->where($product->getKeyName(), $input);
+            return $query->first()->toArray();
+        }
+        return $query;
+    }
+)->name('makanan_api');
+
+Route::match(
+    [
+        'GET',
+        'POST'
+    ],
+    'category_makanan_api',
+    function () {
+        $input = request()->get('id');
+
+        $query = false;
+        if ($input) {
+            $query = MakananFacades::where(MakananFacades::mask_category_id(), $input);
+            return $query->get()->toArray();
+        }
+        return $query;
+    }
+)->name('category_makanan_api');

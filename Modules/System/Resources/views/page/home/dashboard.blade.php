@@ -10,8 +10,9 @@
                     <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
                     <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                 </div>
-                <h2 class="panel-title">Profile Management</h2>
+                <h2 class="panel-title">Pendapatan Bulanan [<a style="text-decoration: underline;" href="{{ route('timers') }}">Untuk melihat Timer Klik disini</a>]</h2>
             </header>
+
             <div class="panel-body line">
 
                 {{-- {!! $chart->container() !!} --}}

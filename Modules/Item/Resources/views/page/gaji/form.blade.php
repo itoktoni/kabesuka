@@ -32,6 +32,16 @@
 
 </div>
 
+<div class="form-group">
+
+	{!! Form::label('name', __('Description'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
+	<div class="col-md-10 col-sm-10 {{ $errors->has('gaji_description') ? 'has-error' : ''}}">
+		{!! Form::textarea('gaji_description', null, ['class' => 'form-control']) !!}
+		{!! $errors->first('gaji_description', '<p class="help-block">:message</p>') !!}
+	</div>
+
+</div>
+
 @if(isset($model))
 @include($folder.'::page.'.$template.'.table')
 @else

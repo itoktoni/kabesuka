@@ -10,6 +10,7 @@ use Modules\Procurement\Dao\Enums\DeliveryStatus;
 use Modules\Procurement\Dao\Enums\PurchasePayment;
 use Modules\Procurement\Dao\Enums\PurchaseStatus;
 use Modules\Procurement\Dao\Enums\RequestStatus;
+use Modules\Procurement\Dao\Enums\SalesStatus;
 use Modules\Reservation\Dao\Enums\BookingType;
 use Modules\System\Dao\Enums\ActionStatus;
 use Modules\System\Plugins\Adapter;
@@ -294,6 +295,7 @@ return [
         'ActionStatus' => ActionStatus::class,
         'TransactionStatus' => TransactionStatus::class,
         'PurchaseStatus' => PurchaseStatus::class,
+        'SalesStatus' => SalesStatus::class,
         'DeliveryStatus' => DeliveryStatus::class,
         'CategoryType' => CategoryType::class,
         'PaymentModel' => PaymentModel::class,

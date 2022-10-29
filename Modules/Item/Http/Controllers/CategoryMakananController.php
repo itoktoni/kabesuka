@@ -3,31 +3,28 @@
 namespace Modules\Item\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Modules\Item\Dao\Enums\GajiType;
-use Modules\Item\Dao\Models\Jadwal;
-use Modules\Item\Dao\Repositories\GajiRepository;
-use Modules\Item\Http\Services\GajiCreateService;
-use Modules\Item\Http\Services\GajiUpdateService as ServicesGajiUpdateService;
-use Modules\System\Dao\Facades\TeamFacades;
-use Modules\System\Dao\Repositories\TeamRepository;
+use Modules\Item\Dao\Enums\CategoryType;
+use Modules\Item\Dao\Models\CategoryMakanan;
+use Modules\Item\Dao\Repositories\CategoryMakananRepository;
+use Modules\Item\Dao\Repositories\CategoryRepository;
 use Modules\System\Http\Requests\DeleteRequest;
 use Modules\System\Http\Requests\GeneralRequest;
 use Modules\System\Http\Services\CreateService;
 use Modules\System\Http\Services\DataService;
 use Modules\System\Http\Services\DeleteService;
-use Modules\System\Http\Services\GajiUpdateService;
 use Modules\System\Http\Services\SingleService;
+use Modules\System\Http\Services\UpdateService;
 use Modules\System\Plugins\Helper;
 use Modules\System\Plugins\Response;
 use Modules\System\Plugins\Views;
 
-class GajiController extends Controller
+class CategoryMakananController extends Controller
 {
     public static $template;
     public static $service;
     public static $model;
 
-    public function __construct(GajiRepository $model, SingleService $service)
+    public function __construct(CategoryMakananRepository $model, SingleService $service)
     {
         self::$model = self::$model ?? $model;
         self::$service = self::$service ?? $service;
@@ -35,12 +32,9 @@ class GajiController extends Controller
 
     private function share($data = [])
     {
-        $user = TeamFacades::whereIn('group_user', ['kasir', 'karyawan'])->get()->mapWithKeys(function($item){
-            return [$item->id => $item->name];
-        })->toArray();
+        $category = CategoryType::getOptions();
         $view = [
-            'user' => $user,
-            'users' => $user
+            'category' => $category,
         ];
         return array_merge($view, $data);
     }
@@ -57,7 +51,7 @@ class GajiController extends Controller
         return view(Views::create())->with($this->share());
     }
 
-    public function save(GeneralRequest $request, GajiCreateService $service)
+    public function save(GeneralRequest $request, CreateService $service)
     {
         $data = $service->save(self::$model, $request);
         return Response::redirectBack($data);
@@ -72,15 +66,12 @@ class GajiController extends Controller
 
     public function edit($code)
     {
-        $model = $this->get($code, ['has_detail', 'has_detail.has_user']);
-        $detail = $model->has_detail ?? false;
         return view(Views::update())->with($this->share([
-            'model' => $model,
-            'detail' => $detail,
+            'model' => $this->get($code),
         ]));
     }
 
-    public function update($code, GeneralRequest $request, ServicesGajiUpdateService $service)
+    public function update($code, GeneralRequest $request, UpdateService $service)
     {
         $data = $service->update(self::$model, $request, $code);
         return Response::redirectBack($data);

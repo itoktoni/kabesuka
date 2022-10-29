@@ -14,12 +14,14 @@ use Modules\Procurement\Dao\Models\PoDetail;
 use Modules\Procurement\Dao\Models\PoReceive;
 use Modules\Procurement\Dao\Models\PurchaseDetail;
 use Modules\Procurement\Dao\Models\RoDetail;
+use Modules\Procurement\Dao\Models\SoDetail;
 use Modules\Procurement\Dao\Repositories\BranchRepository;
 use Modules\Procurement\Dao\Repositories\DeRepository;
 use Modules\Procurement\Dao\Repositories\DoRepository;
 use Modules\Procurement\Dao\Repositories\MovementRepository;
 use Modules\Procurement\Dao\Repositories\PurchaseRepository;
 use Modules\Procurement\Dao\Repositories\RoRepository;
+use Modules\Procurement\Dao\Repositories\SalesRepository;
 use Modules\Procurement\Dao\Repositories\StockRepository;
 use Modules\Procurement\Dao\Repositories\SupplierRepository;
 
@@ -52,6 +54,12 @@ class ModuleServiceProvider extends ServiceProvider
         });
         $this->app->bind('po_detail_facades', function () {
             return new PoDetail();
+        });
+        $this->app->bind('so_facades', function () {
+            return new SalesRepository();
+        });
+        $this->app->bind('so_detail_facades', function () {
+            return new SoDetail();
         });
         $this->app->bind('po_receive_facades', function () {
             return new PoReceive();

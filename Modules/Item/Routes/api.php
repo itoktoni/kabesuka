@@ -12,7 +12,7 @@ Route::match(
     'get_category_api',
     function () {
         $input = request()->get('id');
-       
+
         $query = false;
         if ($input) {
             $query = CategoryFacades::find($input);

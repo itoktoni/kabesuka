@@ -45,6 +45,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'supplier',
         'point',
         'ktp',
+        'gaji_pokok',
+        'gaji_transport',
+        'gaji_lembur',
+        'gaji_thr',
     ];
 
     // public $with = ['has_company'];

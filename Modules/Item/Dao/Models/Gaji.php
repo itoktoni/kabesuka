@@ -18,6 +18,7 @@ class Gaji extends Model
         'gaji_date',
         'gaji_start',
         'gaji_end',
+        'gaji_description',
     ];
 
     // public $with = ['module'];
@@ -31,10 +32,11 @@ class Gaji extends Model
     public $searching = 'gaji_name';
     public $datatable = [
         'gaji_id' => [false => 'Code', 'width' => 50],
-        'gaji_name' => [true => 'Nama Gajian'],
-        'gaji_date' => [true => 'Date'],
-        'gaji_start' => [true => 'Jadwal Start'],
-        'gaji_end' => [true => 'Jadwal End'],
+        'gaji_name' => [true => 'Nama Gajian', 'width' => 150],
+        'gaji_date' => [true => 'Date', 'width' => 80],
+        'gaji_description' => [true => 'Description'],
+        'gaji_start' => [true => 'Jadwal Start', 'width' => 80],
+        'gaji_end' => [true => 'Jadwal End', 'width' => 80],
     ];
 
     protected $casts = [

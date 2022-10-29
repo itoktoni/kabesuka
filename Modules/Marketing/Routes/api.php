@@ -32,7 +32,6 @@ Route::match(
     'category_api',
     function () {
         $input = request()->get('id');
-       
         $query = false;
         if ($input) {
             $query = ProductFacades::where(ProductFacades::mask_category_id(), $input);

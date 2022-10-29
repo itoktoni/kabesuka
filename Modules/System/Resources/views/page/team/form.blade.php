@@ -67,3 +67,33 @@
 		{{ Form::select('active', $status, null, ['class'=> 'form-control']) }}
 	</div>
 </div>
+
+<hr>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">{{ __('Gaji Pokok') }}</label>
+	<div class="col-md-4 {{ $errors->has('gaji_pokok') ? 'has-error' : ''}}">
+		{!! Form::text('gaji_pokok', null, ['class' => 'form-control']) !!}
+		{!! $errors->first('gaji_pokok', '<p class="help-block">:message</p>') !!}
+	</div>
+
+	<label class="col-md-2 control-label">{{ __('Transport') }}</label>
+	<div class="col-md-4 {{ $errors->has('gaji_transport') ? 'has-error' : ''}}">
+		{!! Form::text('gaji_transport', null, ['class' => 'form-control']) !!}
+		{!! $errors->first('gaji_transport', '<p class="help-block">:message</p>') !!}
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">{{ __('Uang Lembur') }}</label>
+	<div class="col-md-4 {{ $errors->has('gaji_lembur') ? 'has-error' : ''}}">
+		{!! Form::text('gaji_lembur', null, ['class' => 'form-control']) !!}
+		{!! $errors->first('gaji_lembur', '<p class="help-block">:message</p>') !!}
+	</div>
+
+	<label class="col-md-2 control-label">{{ __('THR 1 Bulan') }}</label>
+	<div class="col-md-4 {{ $errors->has('gaji_thr') ? 'has-error' : ''}}">
+		{!! Form::text('gaji_thr', null, ['class' => 'form-control']) !!}
+		{!! $errors->first('gaji_thr', '<p class="help-block">:message</p>') !!}
+	</div>
+</div>

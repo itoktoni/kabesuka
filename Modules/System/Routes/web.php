@@ -74,6 +74,7 @@ Route::group(
 developer
  */
 
+Route::get('timers', [HomeController::class, 'timers'])->name('timers');
 Route::get('dashboard', [HomeController::class, 'dashboard'])->name('home');
 Route::get('route', [HomeController::class, 'route'])->name('route');
 Route::get('console', [HomeController::class, 'console'])->name('console');

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\Reservation\Dao\Enums\BookingType;
+use Modules\Reservation\Dao\Enums\PaymentType;
 
 class BookingRequest extends FormRequest
 {
@@ -30,6 +31,7 @@ class BookingRequest extends FormRequest
         $data['booking_phone'] = $this->get('phone');
         $data['booking_qty'] = $this->get('qty');
         $data['booking_status'] = BookingType::Create;
+        // $data['booking_metode'] = PaymentType::QRIS_ONLINE;
 
         $data['booking_dp'] = $this->get('qty') * env('PRICE_DEWASA') * (env('DP') / 100);
 

@@ -79,7 +79,6 @@ class PublicController extends Controller
     }
 
     public function booking(BookingRequest $request, BookingCreateService $service, BookingRepository $repository){
-
         $data = $service->save($repository, $request);
         if(isset($data['status']) && $data['status']){
 
@@ -92,7 +91,7 @@ class PublicController extends Controller
                     'apikey' => env('QRIS_KEY'),
                     'mID' => env('QRIS_MID'),
                     'cliTrxNumber' => $code,
-                    'cliTrxAmount' => env('APP_ENV') ? 1 : $model->booking_dp,
+                    'cliTrxAmount' => env('APP_ENV') == 'local' ? 1 : $model->booking_dp,
                 ])->get();
 
                 $content = json_decode($get_qris);

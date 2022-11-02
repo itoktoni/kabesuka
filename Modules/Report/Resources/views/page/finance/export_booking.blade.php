@@ -28,7 +28,7 @@
                 <th class="text-right" style="width:10%">DP</th>
                 <th class="text-right" style="width:10%">Discount</th>
                 <th class="text-right" style="width:10%">Total</th>
-                <th class="text-right" style="width:10%">Metode</th>
+                <th class="text-right" style="width:15%">Metode</th>
                 <th class="text-right" style="width:10%">Status</th>
             </tr>
         </thead>

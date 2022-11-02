@@ -29,6 +29,9 @@ use Modules\System\Plugins\Helper;
 use Modules\System\Plugins\Response;
 use Modules\System\Plugins\Views;
 use Ixudra\Curl\Facades\Curl;
+use Modules\Finance\Dao\Enums\PaymentType;
+use Modules\Reservation\Dao\Enums\PaymentType as EnumsPaymentType;
+use Modules\Reservation\Dao\Enums\TypeBooking;
 
 class BookingController extends Controller
 {
@@ -74,13 +77,17 @@ class BookingController extends Controller
 
         $meja = Views::option(new MejaRepository());
         $promo = Views::option(new PromoRepository());
+        $payment = EnumsPaymentType::getOptions();
+        $type = TypeBooking::getOptions();
 
         $view = [
             'status' => BookingType::getOptions(),
             'user' => $user,
+            'type' => $type,
             'promo' => $promo,
             'jam' => $jam,
             'meja' => $meja,
+            'payment' => $payment,
         ];
 
         return array_merge($view, $data);

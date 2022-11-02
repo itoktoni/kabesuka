@@ -70,6 +70,7 @@ class Booking extends Model
         'booking_created_by',
         'booking_updated_by',
         'booking_deleted_by',
+        'booking_type',
     ];
 
     protected $filters = [
@@ -105,20 +106,21 @@ class Booking extends Model
     public $datatable = [
         'booking_id' => [false => 'Code', 'width' => 50],
         'booking_code' => [true => 'Code'],
-        'booking_date' => [true => 'Tanggal'],
+        'booking_date' => [true => 'Tanggal', 'width' => 60],
         'booking_name' => [true => 'Name'],
         'booking_email' => [false => 'Email'],
         'booking_phone' => [false => 'Phone'],
         'booking_dewasa_qty' => [false => 'Dewasa'],
         'booking_anak_qty' => [false => 'Anak'],
         'booking_lansia_qty' => [false => 'Lansia'],
-        'booking_value' => [true => 'Value'],
+        'booking_value' => [true => 'Value', 'width' => 50],
         'booking_metode' => [true => 'Metode'],
-        'booking_discount_value' => [true => 'Discount'],
-        'booking_dp' => [true => 'Payment'],
-        'booking_qty' => [true => 'Qty'],
-        'booking_summary' => [true => 'Summary'],
-        'booking_status' => [true => 'Status'],
+        'booking_type' => [true => 'Type'],
+        'booking_discount_value' => [true => 'Discount', 'width' => 60],
+        'booking_dp' => [true => 'Payment', 'width' => 60],
+        'booking_qty' => [true => 'Qty', 'width' => '25'],
+        'booking_summary' => [true => 'Summary', 'width' => 60],
+        'booking_status' => [true => 'Status', 'width' => '50'],
     ];
 
     public function mask_name()

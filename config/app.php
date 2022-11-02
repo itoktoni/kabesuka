@@ -5,13 +5,14 @@ use Modules\Finance\Dao\Enums\PaymentMethod;
 use Modules\Item\Dao\Enums\CategoryType;
 use Modules\Marketing\Dao\Enums\PageType;
 use Modules\Master\Dao\Enums\PaymentModel;
-use Modules\Master\Dao\Enums\PaymentType;
 use Modules\Procurement\Dao\Enums\DeliveryStatus;
 use Modules\Procurement\Dao\Enums\PurchasePayment;
 use Modules\Procurement\Dao\Enums\PurchaseStatus;
 use Modules\Procurement\Dao\Enums\RequestStatus;
 use Modules\Procurement\Dao\Enums\SalesStatus;
 use Modules\Reservation\Dao\Enums\BookingType;
+use Modules\Reservation\Dao\Enums\PaymentType;
+use Modules\Reservation\Dao\Enums\TypeBooking;
 use Modules\System\Dao\Enums\ActionStatus;
 use Modules\System\Plugins\Adapter;
 use Modules\System\Plugins\Views;
@@ -299,7 +300,6 @@ return [
         'DeliveryStatus' => DeliveryStatus::class,
         'CategoryType' => CategoryType::class,
         'PaymentModel' => PaymentModel::class,
-        'PaymentType' => PaymentType::class,
         'GroupUserStatus' => GroupUserStatus::class,
         'PdfFacade' => Barryvdh\DomPDF\PdfFacade::class,
         'DotenvEditor' => Jackiedo\DotenvEditor\Facades\DotenvEditor::class,
@@ -313,7 +313,9 @@ return [
         'GroupUserType' => GroupUserType::class,
         'PurchasePayment' => PurchasePayment::class,
         'PaymentMethod' => PaymentMethod::class,
+        'PaymentType' => PaymentType::class,
         'BookingType' => BookingType::class,
+        'TypeBooking' => TypeBooking::class,
         'PageType' => PageType::class,
         'RequestStatus' => RequestStatus::class,
         'BARCODE1D' => Milon\Barcode\Facades\DNS1DFacade::class,

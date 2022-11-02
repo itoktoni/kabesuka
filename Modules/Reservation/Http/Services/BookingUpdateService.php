@@ -5,6 +5,7 @@ namespace Modules\Reservation\Http\Services;
 use App\Models\User;
 use Ixudra\Curl\Facades\Curl;
 use Modules\Reservation\Dao\Enums\BookingType;
+use Modules\Reservation\Dao\Enums\PaymentType;
 use Modules\Reservation\Dao\Models\Booking;
 use Modules\System\Dao\Interfaces\CrudInterface;
 use Modules\System\Plugins\Alert;
@@ -17,7 +18,7 @@ class BookingUpdateService
         $data = $check['data'] ?? false;
         if ($check['status']) {
 
-            if($data && $data['booking_metode'] == 'QRIS' && empty($data['booking_qris_content'])){
+            if($data && $data['booking_metode'] == PaymentType::QRIS_ONLINE && empty($data['booking_qris_content'])){
                 try {
                     $get_qris = Curl::to(env('QRIS_API'))->withData([
                         'do' => 'Invoice',

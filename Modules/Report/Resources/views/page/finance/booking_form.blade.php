@@ -28,7 +28,7 @@
 
     {!! Form::label('name', __('Payment'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
     <div class="col-md-3 col-sm-3 {{ $errors->has('booking_metode') ? 'has-error' : ''}}">
-        {{ Form::select('booking_metode', ['' => 'Select Payment', 'CASH' => 'CASH', 'DEBIT' => 'DEBIT', 'QRIS' => 'QRIS'], request()->get('booking_metode') ?? null, ['class'=> 'form-control ']) }}
+        {{ Form::select('booking_metode', $payment, request()->get('booking_metode') ?? null, ['class'=> 'form-control ']) }}
         {!! $errors->first('booking_metode', '<p class="help-block">:message</p>') !!}
     </div>
 

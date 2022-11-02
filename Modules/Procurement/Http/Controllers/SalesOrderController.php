@@ -12,6 +12,7 @@ use Modules\Item\Dao\Repositories\CategoryMakananRepository;
 use Modules\Item\Dao\Repositories\CategoryRepository;
 use Modules\Item\Dao\Repositories\LocationRepository;
 use Modules\Item\Dao\Repositories\MakananRepository;
+use Modules\Item\Dao\Repositories\MejaRepository;
 use Modules\Item\Dao\Repositories\ProductRepository;
 use Modules\Procurement\Dao\Enums\SalesPayment;
 use Modules\Procurement\Dao\Enums\SalesStatus;
@@ -33,6 +34,7 @@ use Modules\Procurement\Http\Services\DeleteReceiveService;
 use Modules\Procurement\Http\Services\SalesCreateService;
 use Modules\Procurement\Http\Services\SalesReceiveService;
 use Modules\Procurement\Http\Services\SalesUpdateService;
+use Modules\Reservation\Dao\Enums\PaymentType;
 use Modules\Reservation\Dao\Repositories\CustomerRepository;
 use Modules\System\Dao\Enums\GroupUserType;
 use Modules\System\Dao\Repositories\TeamRepository;
@@ -73,9 +75,13 @@ class SalesOrderController extends Controller
         $category = Views::option(new CategoryMakananRepository());
         $location = Views::option(new LocationRepository());
         $product = Views::option(new MakananRepository());
+        $table = Views::option(new MejaRepository());
+        $payment = PaymentType::getOptions();
 
         $view = [
+            'table' => $table,
             'product' => $product,
+            'payment' => $payment,
             'location' => $location,
             'category' => $category,
             'customer' => $customer,
@@ -94,7 +100,7 @@ class SalesOrderController extends Controller
     public function create()
     {
         $status = [SalesStatus::Create => SalesStatus::getDescription(SalesStatus::Create)];
-        return view(Views::create())->with($this->share([
+        return view(Views::create(config('page'), config('folder')))->with($this->share([
             'status' => $status,
         ]));
     }

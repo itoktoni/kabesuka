@@ -11,6 +11,7 @@ use Modules\Report\Dao\Repositories\ReportBookingFinance;
 use Modules\Report\Dao\Repositories\ReportPurchaseFinance;
 use Modules\Report\Dao\Repositories\ReportPurchaseSummary;
 use Modules\Reservation\Dao\Enums\BookingType;
+use Modules\Reservation\Dao\Enums\PaymentType;
 use Modules\System\Dao\Repositories\TeamRepository;
 use Modules\System\Http\Services\ReportService;
 use Modules\System\Plugins\Views;
@@ -31,10 +32,11 @@ class FinanceController extends Controller
         $supplier = Views::option(new SupplierRepository());
         $status = PurchaseStatus::getOptions();
         $booking = array_merge(['' => 'Semua Status'], BookingType::getOptions());
-
+        $payment = PaymentType::getOptions();
         $view = [
             'supplier' => $supplier,
             'product' => $product,
+            'payment' => array_merge(['- Pilih Pembayaran -'], $payment),
             'customer' => $customer,
             'user' => $user,
             'status' => $status,

@@ -275,7 +275,12 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
                 <td class="th">Telp</td>
                 <td class="td"> {{ $master->booking_phone ?? '' }}</td>
             </tr>
-
+            @if($master->booking_type)
+            <tr>
+                <td class="th">Type Antrian</td>
+                <td class="td"> {{ TypeBooking::getDescription($master->booking_type) ?? '' }}</td>
+            </tr>
+            @endif
         </table>
 
         <div style="border-top: 0.5px solid grey;margin-top:30px">

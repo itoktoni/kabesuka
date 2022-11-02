@@ -16,7 +16,8 @@
         <td>
             @foreach(Adapter::getBookingMejaDate($key, date('Y-m-d')) as $booked)
             <a href="{{ route('reservation_booking_edit', ['code' => $booked->booking_id]) }}" class="btn btn-block {{ $booked->booking_start_time ? 'btn-danger' : 'btn-default' }}">
-                <b>{{ substr($booked->booking_code, -3) ?? '' }}</b> <br> {{ $booked->booking_name }}  {!! $booked->booking_start_date ? '<br> : '.substr($booked->booking_start_date, 11, 5) : '' !!}
+                <b>{{ substr($booked->booking_code, -3) ?? '' }}</b> - <b>{{ $booked->booking_type ?? '' }}</b>
+                <br> {{ $booked->booking_name }}  {!! $booked->booking_start_date ? '<br> : '.substr($booked->booking_start_date, 11, 5) : '' !!}
             </a>
             @endforeach
         </td>
@@ -192,7 +193,7 @@
 
     {!! Form::label('name', __('Pembayaran'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
     <div class="col-md-2 col-sm-2 {{ $errors->has('booking_metode') ? 'has-error' : ''}}">
-        {{ Form::select('booking_metode', ['CASH' => 'CASH', 'DEBIT' => 'DEBIT', 'QRIS' => 'QRIS'], null, ['class'=> 'form-control ']) }}
+        {{ Form::select('booking_metode', $payment, null, ['class'=> 'form-control ']) }}
         {!! $errors->first('booking_metode', '<p class="help-block">:message</p>') !!}
     </div>
 
@@ -200,6 +201,12 @@
     <div class="col-md-2 col-sm-2 {{ $errors->has('booking_status') ? 'has-error' : ''}}">
         {{ Form::select('booking_status', $status, null, ['class'=> 'form-control ']) }}
         {!! $errors->first('booking_status', '<p class="help-block">:message</p>') !!}
+    </div>
+
+    {!! Form::label('name', __('Type'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-2 col-sm-2 {{ $errors->has('booking_type') ? 'has-error' : ''}}">
+        {{ Form::select('booking_type', $type, null, ['class'=> 'form-control ']) }}
+        {!! $errors->first('booking_type', '<p class="help-block">:message</p>') !!}
     </div>
 
 </div>

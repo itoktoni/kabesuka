@@ -53,6 +53,8 @@ class So extends Model
         'so_company_name',
         'so_company_address',
         'so_job_code',
+        'so_table',
+        'so_payment',
     ];
 
     // public $with = ['has_detail'];

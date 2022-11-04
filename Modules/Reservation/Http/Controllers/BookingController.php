@@ -264,7 +264,7 @@ class BookingController extends Controller
             'total' => $total,
         ];
 
-        $pdf = PDF::loadView(Helper::setViewPrint('invoice', config('folder')), $data)->setPaper(array( 0 , 0 , 226 , 370 + ($total * 20) ));
+        $pdf = PDF::loadView(Helper::setViewPrint('invoice', config('folder')), $data)->setPaper(array( 0 , 0 , 226 , 370 + ($total * 50) ));
         return $pdf->stream();
     }
 

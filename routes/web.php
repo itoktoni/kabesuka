@@ -57,9 +57,13 @@ Route::match(
             $string = str_replace('@value', $total, $matrix);
             try {
                 $promo = Helper::calculate($string);
+                $total = ($total - $promo);
+
             } catch (\Throwable $th) {
             }
         }
+
+        $total = $total + ($total * (env('PPN') / 100));
 
         return [
             'total' => $total,

@@ -100,7 +100,7 @@
 				<strong>Pajak Restoran</strong>
 			</td>
 			<td data-title="" class="text-right">
-				{!! Form::text('', $model->mask_tax ?? 0 , ['readonly', 'class' => 'number form-control text-right'])
+				{!! Form::text('', $model->so_sum_tax ?? 0 , ['readonly', 'class' => 'number form-control text-right'])
 				!!}
 			</td>
 		</tr>

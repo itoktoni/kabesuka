@@ -76,12 +76,14 @@ class SalesRequest extends FormRequest
         //     }
         // }
 
-        $total_summary = $total_value - $discount_value;
+        $total_data = ($total_value - $discount_value);
+        $total_tax = ($total_data * env('PPN')) / 100;
+        $total_summary = $total_data + $total_tax;
 
         $this->merge([
             SoFacades::getKeyName() => $autonumber,
             SoFacades::mask_value() => $total_value,
-            // SoFacades::mask_tax() => $total_tax,
+            SoFacades::mask_tax() => $total_tax,
             // SoFacades::mask_pph() => $total_pph,
             // SoFacades::mask_ppn() => $total_ppn,
             // SoFacades::mask_dpp() => $total_dpp,

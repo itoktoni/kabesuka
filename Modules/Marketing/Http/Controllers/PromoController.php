@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Modules\Marketing\Dao\Enums\PromoType;
 use Modules\Marketing\Dao\Repositories\PromoRepository;
+use Modules\Reservation\Dao\Enums\TypeBooking;
 use Modules\System\Http\Requests\DeleteRequest;
 use Modules\System\Http\Requests\GeneralRequest;
 use Modules\System\Http\Services\CreateService;
@@ -32,6 +33,8 @@ class PromoController extends Controller
     private function share($data = [])
     {
         $view = [
+            'type' => TypeBooking::getOptions(),
+            'default' => []
         ];
 
         return array_merge($view, $data);

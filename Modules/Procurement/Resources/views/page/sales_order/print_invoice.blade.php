@@ -258,6 +258,11 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
             <h2 style="text-align: center;margin-top:0px;margin-bottom:-20px">
                 <img id="logo" style="height:80px;" src="{{ public_path('files/logo/black.png') }}" alt="">
             </h2>
+            @if(env('NPWP'))
+            <h5 style="text-align: center;margin-top:0px;margin-bottom:0px;">
+                NPWPD : {{ env('NPWP') ?? '' }}
+			</h5>
+			@endif
             <hr style="border:none;border-top: dotted 1px;">
             <h3 style="text-align: center;margin-top:0px;margin-bottom:0px;">
                 {{ $master->so_code ?? '' }}
@@ -272,6 +277,7 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
                 <td class="td">{{ $master->so_customer_name ?? '' }}</td>
             </tr>
         </table>
+
 
         <hr style="border:none;border-top: dotted 1px;">
         <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%'>
@@ -301,6 +307,16 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
 
         <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%'>
             <tr>
+                <td class="th">Catatan</td>
+                <td class="td">{{ $master->so_notes_internal ?? '' }}</td>
+            </tr>
+        </table>
+
+
+        <hr style="border:none;border-top: dotted 1px;">
+
+        <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%'>
+            <tr>
                 <td class="name">Subtotal</td>
                 <td class="total">{{ number_format( $master->so_sum_value ,0,",",".")}}</td>
             </tr>
@@ -319,9 +335,18 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
 
         <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%'>
             <tr>
+                <td class="name">Pajak Restoran {{ env('PPN') }}%</td>
+                <td class="total">{{ number_format( $master->so_sum_tax ,0,",",".")}}</td>
+            </tr>
+        </table>
+
+        <hr style="border:none;border-top: dotted 1px;">
+
+        <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%'>
+            <tr>
                 <td class="name"><strong style="font-size: 15px;">Total</strong></td>
                 <td align="right" class="price"><strong
-                        style="font-size: 15px;">{{ number_format( $master->so_sum_discount ,0,",",".") }}</strong>
+                        style="font-size: 15px;">{{ number_format( $master->so_sum_total ,0,",",".") }}</strong>
                 </td>
             </tr>
         </table>

@@ -55,6 +55,7 @@ class So extends Model
         'so_job_code',
         'so_table',
         'so_payment',
+        'so_sum_tax',
     ];
 
     // public $with = ['has_detail'];

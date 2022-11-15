@@ -8,6 +8,8 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Modules\Report\Dao\Interfaces\GenerateReport;
+use Modules\Reservation\Dao\Enums\BookingType;
+use Modules\Reservation\Dao\Enums\TypeBooking;
 use Modules\Reservation\Dao\Repositories\BookingRepository;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
@@ -32,6 +34,8 @@ class ReportBookingFinance extends BookingRepository implements FromView, WithCo
         if ($to = request()->get('to')) {
             $query->whereDate('booking_date', '<=', $to);
         }
+
+        $query->where('booking_type', TypeBooking::AYCE);
 
         // dd($query->toSql());
 

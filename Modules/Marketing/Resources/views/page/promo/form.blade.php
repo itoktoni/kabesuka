@@ -20,21 +20,6 @@
 
 </div>
 
-<div class="form-group">
-
-    {!! Form::label('name', 'Type', ['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4 {{ $errors->has($form.'type') ? 'has-error' : ''}}">
-        {{ Form::select($form.'type', $type, $model->marketing_promo_type ?? null, ['class'=> 'form-control']) }}
-        {!! $errors->first($form.'type', '<p class="help-block">:message</p>') !!}
-    </div>
-
-    {!! Form::label('name', 'Default', ['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4 {{ $errors->has($form.'default') ? 'has-error' : ''}}">
-        {{ Form::select($form.'default', $default, $model->marketing_promo_default ?? null, ['class'=> 'form-control']) }}
-        {!! $errors->first($form.'default', '<p class="help-block">:message</p>') !!}
-    </div>
-
-</div>
 <hr>
 <div class="form-group">
 
@@ -78,12 +63,6 @@
         {!! $errors->first($form.'file', '<p class="help-block">:message</p>') !!}
     </div>
 
-    {!! Form::label('name', 'Status', ['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4 {{ $errors->has($form.'status') ? 'has-error' : ''}}">
-        {{ Form::select($form.'status', $status, null, ['class'=> 'form-control']) }}
-        {!! $errors->first($form.'status', '<p class="help-block">:message</p>') !!}
-    </div>
-
 </div>
 <div class="form-group">
     {!! Form::label('name', 'Description', ['class' => 'col-md-2 control-label']) !!}
@@ -100,13 +79,7 @@
     </div>
 </div>
 <hr>
-<div class="form-group">
-    {!! Form::label('name', 'Voucher', ['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-10 {{ $errors->has($form.'user_json') ? 'has-error' : ''}}">
-        {{ Form::select('emails[]', $user, json_decode($model->marketing_promo_user_json) ?? null, ['class'=> 'form-control', 'multiple']) }}
-        {!! $errors->first($form.'user_json', '<p class="help-block">:message</p>') !!}
-    </div>
-</div>
+
 <hr>
 <div class="form-group">
 

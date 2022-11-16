@@ -61,7 +61,9 @@ class So extends Model
     // public $with = ['has_detail'];
 
     protected $filters = [
-        'so_customer_id'
+        'so_customer_id',
+        'so_payment',
+        'so_status',
     ];
 
     public $timestamps = true;
@@ -85,7 +87,12 @@ class So extends Model
         'so_updated_at' => [false => 'Last At', 'width' => 50],
         'so_customer_name' => [true => 'Nama Customer', 'width' => 150],
         'so_notes_internal' => [true => 'Catatan'],
+        'so_payment' => [false => 'Value', 'width' => 80],
+        'so_status' => [false => 'Value', 'width' => 80],
         'so_sum_value' => [false => 'Value', 'width' => 80],
+        'so_sum_discount' => [false => 'Value', 'width' => 80],
+        'so_discount_value' => [false => 'Value', 'width' => 80],
+        'so_sum_tax' => [false => 'Value', 'width' => 80],
         'so_sum_total' => [true => 'Total', 'width' => 70],
         'so_status' => [true => 'Status', 'width' => 70, 'class' => 'text-center', 'status' => 'status'],
     ];

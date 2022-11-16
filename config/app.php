@@ -315,6 +315,7 @@ return [
         'PaymentMethod' => PaymentMethod::class,
         'PaymentType' => PaymentType::class,
         'BookingType' => BookingType::class,
+        'SalesStatus' => SalesStatus::class,
         'TypeBooking' => TypeBooking::class,
         'PageType' => PageType::class,
         'RequestStatus' => RequestStatus::class,

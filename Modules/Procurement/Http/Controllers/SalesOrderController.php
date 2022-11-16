@@ -337,10 +337,11 @@ class SalesOrderController extends Controller
     public function printInvoice($code)
     {
         $data = $this->get($code, ['has_detail']);
+        $detail = $data->has_detail;
         $pdf = PDF::loadView(Views::pdf(config('page'), config('folder'), 'print_invoice'), [
             'master' => $data,
-            'detail' => $data->has_detail
-        ])->setPaper(array( 0 , 0 , 226 , 380 ));;
+            'detail' => $detail
+        ])->setPaper(array( 0 , 0 , 226 , 380 + ($detail->count() * 50)));;
 
         return $pdf->stream();
     }

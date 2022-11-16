@@ -3,7 +3,9 @@
 namespace Modules\Procurement\Dao\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Item\Dao\Facades\MakananFacades;
 use Modules\Item\Dao\Facades\ProductFacades;
+use Modules\Item\Dao\Models\Makanan;
 use Modules\Item\Dao\Models\Product;
 use Modules\Procurement\Dao\Facades\PoFacades;
 
@@ -187,7 +189,7 @@ class SoDetail extends Model
 
     public function has_product()
     {
-        return $this->hasOne(Product::class, ProductFacades::getKeyName(), $this->mask_product_id());
+        return $this->hasOne(Makanan::class, MakananFacades::getKeyName(), $this->mask_product_id());
     }
 
     public function has_master()

@@ -38,6 +38,11 @@
                         <a href="{{ route('login') }}">Login</a>
                     </li>
                     @endauth
+
+                    <li class="menu-item">
+                        <a target="_blank" href="{{ Helper::files('menu.pdf') }}">Menu</a>
+                    </li>
+
                 </ul>
             </nav>
             <div class="flat-button flat-button-style3">

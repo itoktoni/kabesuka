@@ -16,10 +16,10 @@ class AppServiceProvider extends ServiceProvider {
     public function boot() {
 
         Schema::defaultStringLength(191);
-       
+
        if(env('ENABLE_HTTPS', false)){
             \Illuminate\Support\Facades\URL::forceScheme('https');
-       } 
+       }
     }
 
     /**

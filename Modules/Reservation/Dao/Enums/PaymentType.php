@@ -11,7 +11,7 @@ class PaymentType extends Enum
     use StatusTrait;
 
     const CASH = 'CASH';
-    const DEBIT = 'DEBIG';
+    const DEBIT = 'DEBIT';
     const QRIS_ONLINE = 'QRIS_ONLINE';
     const QRIS_OFFLINE = 'QRIS_OFFLINE';
 

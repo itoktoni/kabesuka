@@ -17,7 +17,7 @@
     <table id="datatable" class="responsive table table-no-more table-bordered table-striped mb-none">
         <thead>
             <tr>
-                <th class="text-left" style="width:20%">No. Order</th>
+                <th class="text-left" style="width:10%">No. Order</th>
                 <th class="text-left" style="width:20%">Nama Customer</th>
                 <th class="text-left" style="width:20%">Nama Product</th>
                 <th class="text-left" style="width:10%">Payment</th>
@@ -34,7 +34,20 @@
             @if(!empty($preview))
             @foreach($preview as $data)
             @if($detail = $data->has_detail)
+            @php
+                $grand_total = 0;
+            @endphp
             @foreach($detail as $item)
+            @php
+                $discount = $tax = 0;
+                if($loop->iteration == 1){
+                    $discount = $data->so_discount_value;
+                    $tax = $data->so_sum_tax;
+                }
+                $total = $item->mask_qty * $item->mask_price;
+                $summary = ($total + $tax) - $discount;
+                $grand_total = $grand_total + $total;
+            @endphp
             <tr>
                 <td data-title="No. Order">{{ $data->so_code ?? '' }} </td>
                 <td data-title="Nama Company">{{ $data->so_customer_name ?? '' }} </td>
@@ -43,10 +56,10 @@
                 <td data-title="Nama Product">{{ SalesStatus::getDescription($data->so_status) ?? '' }} </td>
                 <td data-title="Qty" class="text-right">{{ $item->mask_qty ?? '' }} </td>
                 <td data-title="Harga" class="text-right">{{ Helper::createRupiah($item->mask_price) ?? '' }} </td>
-                <td data-title="Qty" class="text-right">{{ Helper::createRupiah($data->so_sum_value) ?? '' }} </td>
-                <td data-title="Qty" class="text-right">-{{ Helper::createRupiah($data->so_discount_value) ?? '' }} </td>
-                <td data-title="Qty" class="text-right">{{ Helper::createRupiah($data->so_sum_tax) ?? '' }} </td>
-                <td data-title="Total" class="text-right">{{ Helper::createRupiah($data->so_sum_total) }} </td>
+                <td data-title="Qty" class="text-right">{{ Helper::createRupiah($total) ?? '' }} </td>
+                <td data-title="Qty" class="text-right">-{{ Helper::createRupiah($discount) ?? '' }} </td>
+                <td data-title="Qty" class="text-right">{{ Helper::createRupiah($tax) ?? '' }} </td>
+                <td data-title="Total" class="text-right">{{ Helper::createRupiah($summary) }} </td>
             </tr>
             @endforeach
             @endif
@@ -54,7 +67,7 @@
             @endif
             <tr>
                 <td class="total" data-title="" colspan="10">Grand Total</td>
-                <td class="total text-right" data-title="Grand Total">{{ Helper::createRupiah($preview->sum('so_sum_total')) }}</td>
+                <td class="total text-right" data-title="Grand Total">{{ Helper::createRupiah($grand_total) }}</td>
             </tr>
         </tbody>
     </table>

@@ -46,7 +46,7 @@
                 }
                 $total = $item->mask_qty * $item->mask_price;
                 $summary = ($total + $tax) - $discount;
-                $grand_total = $grand_total + $total;
+                $grand_total = $grand_total + $summary;
             @endphp
             <tr>
                 <td data-title="No. Order">{{ $data->so_code ?? '' }} </td>

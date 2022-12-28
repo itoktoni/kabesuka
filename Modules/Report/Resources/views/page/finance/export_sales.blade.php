@@ -17,17 +17,17 @@
     <table id="datatable" class="responsive table table-no-more table-bordered table-striped mb-none">
         <thead>
             <tr>
-                <th class="text-left" style="width:10%">No. Order</th>
-                <th class="text-left" style="width:20%">Nama Customer</th>
-                <th class="text-left" style="width:20%">Nama Product</th>
-                <th class="text-left" style="width:10%">Payment</th>
-                <th class="text-left" style="width:10%">Status</th>
-                <th class="text-right" style="width:5%">Qty</th>
-                <th class="text-right" style="width:10%">Harga</th>
-                <th class="text-right" style="width:10%">Value</th>
-                <th class="text-right" style="width:10%">Discount</th>
-                <th class="text-right" style="width:10%">Tax</th>
-                <th class="text-right" style="width:10%">Total</th>
+                <th class="text-left">No. Order</th>
+                <th class="text-left">Nama Customer</th>
+                <th class="text-left">Nama Product</th>
+                <th class="text-left">Payment</th>
+                <th class="text-left">Status</th>
+                <th class="text-right">Qty</th>
+                <th class="text-right">Harga</th>
+                <th class="text-right">Value</th>
+                <th class="text-right">Discount</th>
+                <th class="text-right">Tax</th>
+                <th class="text-right">Total</th>
             </tr>
         </thead>
         <tbody>

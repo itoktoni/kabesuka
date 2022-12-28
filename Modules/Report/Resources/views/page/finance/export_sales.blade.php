@@ -31,12 +31,12 @@
             </tr>
         </thead>
         <tbody>
-            @if(!empty($preview))
-            @foreach($preview as $data)
-            @if($detail = $data->has_detail)
             @php
                 $grand_total = 0;
             @endphp
+            @if(!empty($preview))
+            @foreach($preview as $data)
+            @if($detail = $data->has_detail)
             @foreach($detail as $item)
             @php
                 $discount = $tax = 0;

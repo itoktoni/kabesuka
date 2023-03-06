@@ -55,11 +55,17 @@ class SendWa extends Command
     public function handle()
     {
 
-        $notifikasi = Notifikasi::whereNull('notifikasi_end')->get();
+        $notifikasi = Notifikasi::whereNull('notifikasi_end')->limit(2)->get();
+        $check = false;
+
         foreach($notifikasi as $send){
-            Helper::sendWa($send->notifikasi_content, $send->notifikasi_phone, $send->notifikasi_image);
+            $check = Helper::sendWa($send->notifikasi_content, $send->notifikasi_phone, $send->notifikasi_image);
+
+            Notifikasi::find($send->notifikasi_id)->update([
+                'notifikasi_end' => date('Y-m-d H:i:s')
+            ]);
         }
 
-        $this->info('The system has been sent successfully!');
+        $this->info($check);
     }
 }

@@ -977,5 +977,7 @@ class Helper
         print_r($result);
 
         $curl = curl_init();
+
+        return $result;
     }
 }

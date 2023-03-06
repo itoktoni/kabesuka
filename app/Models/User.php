@@ -49,6 +49,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'gaji_transport',
         'gaji_lembur',
         'gaji_thr',
+        'wa_blast_desc',
+        'wa_blast_date',
+
     ];
 
     // public $with = ['has_company'];
@@ -90,6 +93,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'group_user'    => [true => 'Group User'],
         'company'       => [true => 'Company'],
         'active'        => [true => 'Active', 'width' => '100', 'class' => 'text-center'],
+        'wa_blast_desc'        => [true => 'Whatsapp', 'width' => '100', 'class' => 'text-center'],
+        'wa_blast_date'        => [true => 'Tanggal', 'width' => '100', 'class' => 'text-center'],
     ];
 
     public function scopeById($query, $id)

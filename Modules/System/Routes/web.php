@@ -82,25 +82,22 @@ Route::get('language', [HomeController::class, 'language'])->name('language');
 Route::get('home', [HomeController::class, 'dashboard']);
 Route::match(['get', 'post'], 'configuration', [HomeController::class, 'configuration'])->name('configuration');
 route::post('upload', function () {
-    $data = request()->file('image');
-    $name = Helper::uploadImage($data, 'test');
+    // $data = request()->file('upload');
+    // $name = Helper::uploadImage($data, 'files/page');
 
-    $response = [
-        'success' => true,
-        'url' => Helper::files('test/' . $name),
-    ];
-
-    /*
-    #return url used by ckeditor
+    // $response = [
+    //     'success' => true,
+    //     'url' => Helper::files('page/' . $name),
+    // ];
 
     $file = request()->file('upload');
-    $name = Helper::uploadImage($file, 'test');
+    $name = Helper::uploadImage($file, 'page');
 
     $response = [
-    'uploaded' => true,
-    'url' => Helper::files('test/'.$name),
+        'uploaded' => true,
+        'url' => Helper::files('page/'.$name),
     ];
-     */
+
 
     return response()->json($response);
 })->name('upload');

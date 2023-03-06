@@ -13,7 +13,7 @@
 <script>
     ClassicEditor.create(document.querySelector('textarea.basic'), {
         ckfinder: {
-            uploadUrl: "{{ route('upload') }}",
+            uploadUrl: "{{ route('upload').'?_token='.csrf_token() }}",
         }
     }).then(editor => {
         console.log('Editor was initialized', editor);

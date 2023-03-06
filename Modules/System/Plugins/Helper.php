@@ -792,7 +792,7 @@ class Helper
         if (!empty($file)) { //handle images
             $name = time() . "." . $file->getClientOriginalExtension();
             $file->storeAs($folder, $name);
-            $file->storeAs($folder, 'thumbnail_' . $name);
+            // $file->storeAs($folder, 'thumbnail_' . $name);
             return $name;
         }
     }
@@ -803,14 +803,13 @@ class Helper
         if (!empty($file)) { //handle images
             $name = time() . "." . $file->getClientOriginalExtension();
             $file->storeAs($folder, $name);
-            $file->storeAs($folder, 'thumbnail_' . $name);
+            // $file->storeAs($folder, 'thumbnail_' . $name);
             //Resize image here
-            $thumbnailpath = public_path('files//' . $folder . '//' . 'thumbnail_' . $name);
-            $img = Image::make($thumbnailpath)->resize($width, $height, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $img->save($thumbnailpath);
-
+            // $thumbnailpath = public_path('files//' . $folder . '//' . 'thumbnail_' . $name);
+            // $img = Image::make($thumbnailpath)->resize($width, $height, function ($constraint) {
+            //     $constraint->aspectRatio();
+            // });
+            // $img->save($thumbnailpath);
             return $name;
         }
     }
@@ -821,7 +820,7 @@ class Helper
         $path = public_path('files//' . $folder . '//');
         if (file_exists($path . $name)) {
             unlink($path . $name);
-            unlink($path . 'thumbnail_' . $name);
+            // unlink($path . 'thumbnail_' . $name);
             $status = true;
         }
         return $status;
@@ -949,5 +948,34 @@ class Helper
 
         $alphabet = range('A', 'Z');
         return $alphabet[$value]; // returns D
+    }
+
+    public static function sendWa($message, $target, $gambar){
+
+        $curl = curl_init();
+        $token = env('WA_TOKEN');
+        $data = [
+        'phone' => $target,
+        'image' => $gambar,
+        'caption' => $message,
+        ];
+        curl_setopt($curl, CURLOPT_HTTPHEADER,
+            array(
+                "Authorization: $token",
+            )
+        );
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/send-image");
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+        echo "<pre>";
+        print_r($result);
+
+        $curl = curl_init();
     }
 }

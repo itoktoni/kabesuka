@@ -33,6 +33,9 @@ class ModuleServiceProvider extends ServiceProvider
         $this->app->bind('category_facades', function () {
             return new \Modules\Item\Dao\Repositories\CategoryRepository();
         });
+        $this->app->bind('template_facades', function () {
+            return new \Modules\Item\Dao\Repositories\TemplateRepository();
+        });
         $this->app->bind('product_facades', function () {
             return new \Modules\Item\Dao\Repositories\ProductRepository();
         });

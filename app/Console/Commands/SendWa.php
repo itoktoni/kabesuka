@@ -59,7 +59,7 @@ class SendWa extends Command
         $check = false;
 
         foreach($notifikasi as $send){
-            $check = Helper::sendWa($send->notifikasi_content, $send->notifikasi_phone, $send->notifikasi_image);
+            $check = Helper::sendWa($send->notifikasi_content, $send->notifikasi_phone, $send->notifikasi_type, $send->notifikasi_image);
 
             Notifikasi::find($send->notifikasi_id)->update([
                 'notifikasi_end' => date('Y-m-d H:i:s')

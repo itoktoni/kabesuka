@@ -19,6 +19,7 @@ class Notifikasi extends Model
         'notifikasi_start',
         'notifikasi_end',
         'notifikasi_description',
+        'notifikasi_type',
     ];
 
     // public $with = ['module'];

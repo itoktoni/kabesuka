@@ -20,6 +20,7 @@ class Template extends Model
         'template_name',
         'template_image',
         'template_url',
+        'template_type',
         'template_description',
     ];
 

@@ -950,15 +950,34 @@ class Helper
         return $alphabet[$value]; // returns D
     }
 
-    public static function sendWa($message, $target, $gambar){
+    public static function sendWa($message, $target, $type, $gambar = null){
+
+        $url = 'https://jogja.wablas.com/api/send-message';
+        $data = [
+            'phone' =>  $target,
+            'message' => $message,
+        ];
+
+        if($type == 'image'){
+            $url = 'https://jogja.wablas.com/api/send-image';
+            $data = [
+                'phone' => $target,
+                'image' => $gambar,
+                'caption' => $message,
+            ];
+        }
+        else if($type == 'video'){
+            $url = 'https://jogja.wablas.com/api/send-video';
+            $data = [
+                'phone' => $target,
+                'video' => $gambar,
+                'caption' => $message,
+            ];
+        }
 
         $curl = curl_init();
         $token = env('WA_TOKEN');
-        $data = [
-        'phone' => $target,
-        'image' => $gambar,
-        'caption' => $message,
-        ];
+
         curl_setopt($curl, CURLOPT_HTTPHEADER,
             array(
                 "Authorization: $token",
@@ -967,7 +986,7 @@ class Helper
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($curl, CURLOPT_URL,  "https://jogja.wablas.com/api/send-image");
+        curl_setopt($curl, CURLOPT_URL,  $url);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 

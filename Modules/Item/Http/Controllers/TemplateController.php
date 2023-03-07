@@ -30,8 +30,16 @@ class TemplateController extends Controller
 
     private function share($data = [])
     {
-        $view = [
+        $type = [
+            'text' => 'Text',
+            'image' => 'Image',
+            'video' => 'Video'
         ];
+
+        $view = [
+            'type' => $type
+        ];
+
         return array_merge($view, $data);
     }
 

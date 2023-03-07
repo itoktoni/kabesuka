@@ -118,6 +118,7 @@ class Whatsapp extends Model
                         'notifikasi_image' => $gambar,
                         'notifikasi_phone' => Helper::convertPhone($phone),
                         'notifikasi_start' => date('Y-m-d H:i:s'),
+                        'notifikasi_type' => $template->template_type ?? 'text',
                     ]);
                 }
             }
@@ -143,6 +144,7 @@ class Whatsapp extends Model
                             'notifikasi_image' => $gambar,
                             'notifikasi_phone' => Helper::convertPhone($phone),
                             'notifikasi_start' => date('Y-m-d H:i:s'),
+                            'notifikasi_type' => $template->template_type ?? 'text',
                         ]);
                     }
                 }

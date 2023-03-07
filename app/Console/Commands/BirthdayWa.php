@@ -22,7 +22,7 @@ use Modules\Procurement\Emails\CreateOrderEmail as EmailsCreateOrderEmail;
 use Modules\System\Plugins\Helper;
 use PHPUnit\TextUI\Help;
 
-class SendWa extends Command
+class BirthdayWa extends Command
 {
 
     /**
@@ -30,7 +30,7 @@ class SendWa extends Command
      *
      * @var string
      */
-    protected $signature = 'send:promo';
+    protected $signature = 'send:birthday';
 
     /**
      * The console command description.
@@ -57,15 +57,21 @@ class SendWa extends Command
     public function handle()
     {
 
-        $notifikasi = Notifikasi::whereNull('notifikasi_end')->limit(2)->get();
-        $check = false;
+        $birthday = User::whereMonth('birth', date('m'))
+        ->whereDay('birth', date('d'))
+        ->get();
 
-        foreach($notifikasi as $send){
-            $check = Helper::sendWa($send->notifikasi_content, $send->notifikasi_phone, $send->notifikasi_type, $send->notifikasi_image);
+        if($birthday){
+            foreach($birthday as $user){
 
-            Notifikasi::find($send->notifikasi_id)->update([
-                'notifikasi_end' => date('Y-m-d H:i:s')
-            ]);
+                $template = Template::find(1);
+
+                $content = str_replace('@name', $user, $template->template_description);
+                $gambar = Helper::files('template/'.$template->template_image);
+
+                $check = Helper::sendWa($content, Helper::convertPhone($user->phone), $template->template_type, $gambar);
+
+            }
         }
 
         $this->info($check);

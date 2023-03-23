@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Modules\Finance\Dao\Models\Payment;
 use Modules\Sales\Emails\CreateOrderEmail;
@@ -56,7 +57,7 @@ class SendWa extends Command
      */
     public function handle()
     {
-
+        Log::alert('info');
         $notifikasi = Notifikasi::whereNull('notifikasi_end')->limit(2)->get();
         $check = false;
 

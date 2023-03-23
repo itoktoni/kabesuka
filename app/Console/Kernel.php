@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel {
         'App\Console\Commands\SyncDownloadOutstanding',
         'App\Console\Commands\SyncUploadOutstanding',
         'App\Console\Commands\SyncUpdateOutstanding',
-        SendWa::class
+        SendWa::class,
         BirthdayWa::class
     ];
 

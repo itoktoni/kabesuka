@@ -215,15 +215,13 @@
 
 <div class="form-group"  style="margin-bottom: 100px;">
     {!! Form::label('name', __('Bayar'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
-    <div class="col-md-2 col-sm-2 {{ $errors->has('booking_summary') ? 'has-error' : ''}}">
+    <div class="col-md-2 col-sm-2 {{ $errors->has('') ? 'has-error' : ''}}">
         {!! Form::text('bayar', null, ['class' => 'form-control bayar']) !!}
-        {!! $errors->first('booking_summary', '<p class="help-block">:message</p>') !!}
     </div>
 
-    {!! Form::label('name', __('Bayar'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
-    <div class="col-md-2 col-sm-4 {{ $errors->has('booking_summary') ? 'has-error' : ''}}">
+    {!! Form::label('name', __('Kembalian'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-2 col-sm-4 {{ $errors->has('') ? 'has-error' : ''}}">
         {!! Form::text('kembali', null, ['class' => 'form-control kembalian number']) !!}
-        {!! $errors->first('booking_summary', '<p class="help-block">:message</p>') !!}
     </div>
 
 </div>

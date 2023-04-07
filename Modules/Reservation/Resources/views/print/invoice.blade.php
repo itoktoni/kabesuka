@@ -337,7 +337,7 @@ a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
 		<table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%'>
 			<tr>
 				<td class="name">Down Payment (DP)</td>
-				<td class="total">- {{ number_format( $master->booking_discount_value ,0,",",".")}}</td>
+				<td class="total">- {{ number_format( $master->booking_dp ,0,",",".")}}</td>
 			</tr>
 		</table>
 

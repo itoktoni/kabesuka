@@ -27,6 +27,7 @@ use Modules\System\Plugins\Notes;
 use Modules\System\Plugins\Response;
 use Modules\System\Plugins\Views;
 use Modules\System\Http\Requests\DeleteRequest;
+use Illuminate\Support\Str;
 
 class TeamController extends Controller
 {
@@ -69,6 +70,11 @@ class TeamController extends Controller
 
     public function save(GeneralRequest $request, CreateService $service)
     {
+        if(auth()->user()->group_user == GroupUserType::Kasir){
+            $request['password'] = substr(md5(mt_rand()), 0, 7);
+            $request['username'] = Str::camel($request->name);
+            $request['group_user'] = GroupUserType::Customer;
+        }
         $data = $service->save(self::$model, $request);
         return Response::redirectBack($data);
     }

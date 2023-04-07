@@ -8,8 +8,9 @@ use Modules\System\Dao\Traits\StatusTrait;
 
 class GroupUserType extends Enum
 {
-    const Customer = 'customer';   
-    const Developer = 'developer';   
-    const Admin = 'admin';   
-    const Warehouse = 'warehouse';   
+    const Customer = 'customer';
+    const Developer = 'developer';
+    const Admin = 'admin';
+    const Warehouse = 'warehouse';
+    const Kasir = 'kasir';
 }

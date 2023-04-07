@@ -14,6 +14,7 @@ use Modules\Reservation\Dao\Enums\BookingType;
 use Modules\Reservation\Dao\Enums\PaymentType;
 use Modules\Reservation\Dao\Enums\TypeBooking;
 use Modules\System\Dao\Enums\ActionStatus;
+use Modules\System\Dao\Enums\GroupUserType;
 use Modules\System\Plugins\Adapter;
 use Modules\System\Plugins\Views;
 use Modules\System\Plugins\Notes;

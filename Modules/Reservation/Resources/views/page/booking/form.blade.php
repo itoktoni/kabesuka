@@ -183,7 +183,7 @@
 
 </div>
 
-<div class="form-group"  style="margin-bottom: 100px;">
+<div class="form-group" >
 
     {!! Form::label('name', __('Total + PPN'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
     <div class="col-md-2 col-sm-2 {{ $errors->has('booking_summary') ? 'has-error' : ''}}">
@@ -207,6 +207,23 @@
     <div class="col-md-2 col-sm-2 {{ $errors->has('booking_type') ? 'has-error' : ''}}">
         {{ Form::select('booking_type', $type, null, ['class'=> 'form-control ']) }}
         {!! $errors->first('booking_type', '<p class="help-block">:message</p>') !!}
+    </div>
+
+</div>
+
+<hr>
+
+<div class="form-group"  style="margin-bottom: 100px;">
+    {!! Form::label('name', __('Bayar'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-2 col-sm-2 {{ $errors->has('booking_summary') ? 'has-error' : ''}}">
+        {!! Form::text('bayar', null, ['class' => 'form-control bayar']) !!}
+        {!! $errors->first('booking_summary', '<p class="help-block">:message</p>') !!}
+    </div>
+
+    {!! Form::label('name', __('Bayar'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-2 col-sm-4 {{ $errors->has('booking_summary') ? 'has-error' : ''}}">
+        {!! Form::text('kembali', null, ['class' => 'form-control kembalian number']) !!}
+        {!! $errors->first('booking_summary', '<p class="help-block">:message</p>') !!}
     </div>
 
 </div>
@@ -298,11 +315,18 @@ $('.dp').change(function() {
     calculate();
 });
 
-// $('.bayar').keyup(function(){
-//     var total = $('.total').val();
-//     var kembalian = $('.bayar').val() - total;
-//     $('.kembalian').val(kembalian);
-// });
+$('.bayar').keyup(function(){
+    var total = $('.total').val();
+    var kembalian = $('.bayar').val() - total;
+    $('.kembalian').val(kembalian);
+
+    new Cleave('.kembalian', {
+    numeral: true,
+        numeral: true,
+        delimiter: ',',
+        numeralDecimalScale: 0
+    });
+});
 
 $('.member').change(function(e) {
     var id = $(".member option:selected").val();
@@ -318,10 +342,12 @@ $('.member').change(function(e) {
                 $('.name').val('');
                 $('.phone').val('');
                 $('.email').val('');
+                $('.dp').val('');
 
                 $('.name').val(result.name);
                 $('.phone').val(result.phone);
                 $('.email').val(result.email);
+                $('.dp').val(result.saldo);
             } else {
                 $('.name').val('');
                 $('.phone').val('');

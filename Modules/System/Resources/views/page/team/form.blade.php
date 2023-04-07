@@ -7,10 +7,10 @@
 		{!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 	</div>
 
-	<label class="col-md-2 control-label">{{ __('Point') }}</label>
-	<div class="col-md-4 {{ $errors->has('point') ? 'has-error' : ''}}">
-		{!! Form::text('point', null, ['class' => 'form-control', 'autocomplete' => false]) !!}
-		{!! $errors->first('point', '<p class="help-block">:message</p>') !!}
+	<label class="col-md-2 control-label">{{ __('Phone') }}</label>
+	<div class="col-md-4 {{ $errors->has('phone') ? 'has-error' : ''}}">
+		{!! Form::text('phone', null, ['class' => 'form-control']) !!}
+		{!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
 
@@ -21,25 +21,35 @@
 		{!! $errors->first('email', '<p class="help-block">:message</p>') !!}
 	</div>
 
-	<label class="col-md-2 control-label">{{ __('Phone') }}</label>
-	<div class="col-md-4 {{ $errors->has('phone') ? 'has-error' : ''}}">
-		{!! Form::text('phone', null, ['class' => 'form-control']) !!}
-		{!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+	<label class="col-md-2 control-label">{{ __('Saldo') }}</label>
+	<div class="col-md-4 {{ $errors->has('saldo') ? 'has-error' : ''}}">
+		{!! Form::text('saldo', null, ['class' => 'form-control']) !!}
+		{!! $errors->first('saldo', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
 
+@if(auth()->user()->group_user != GroupUserType::Kasir)
+
 <div class="form-group">
+
+	<label class="col-md-1 control-label">{{ __('Point') }}</label>
+	<div class="col-md-1 {{ $errors->has('point') ? 'has-error' : ''}}">
+		{!! Form::text('point', null, ['class' => 'form-control', 'autocomplete' => false]) !!}
+		{!! $errors->first('point', '<p class="help-block">:message</p>') !!}
+	</div>
+
+	<label class="col-md-1 control-label">{{ __('KTP') }}</label>
+	<div class="col-md-3 {{ $errors->has('ktp') ? 'has-error' : ''}}">
+		{!! Form::text('ktp', null, ['class' => 'form-control']) !!}
+		{!! $errors->first('ktp', '<p class="help-block">:message</p>') !!}
+	</div>
+
 	<label class="col-md-2 control-label">{{ __('Birthday') }}</label>
 	<div class="col-md-4 {{ $errors->has('birth') ? 'has-error' : ''}}">
 		{!! Form::text('birth', null, ['class' => 'form-control date']) !!}
 		{!! $errors->first('birth', '<p class="help-block">:message</p>') !!}
 	</div>
 
-	<label class="col-md-2 control-label">{{ __('KTP') }}</label>
-	<div class="col-md-4 {{ $errors->has('ktp') ? 'has-error' : ''}}">
-		{!! Form::text('ktp', null, ['class' => 'form-control']) !!}
-		{!! $errors->first('ktp', '<p class="help-block">:message</p>') !!}
-	</div>
 </div>
 
 <div class="form-group">
@@ -97,3 +107,4 @@
 		{!! $errors->first('gaji_thr', '<p class="help-block">:message</p>') !!}
 	</div>
 </div>
+@endif

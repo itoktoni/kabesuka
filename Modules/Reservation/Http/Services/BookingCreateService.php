@@ -2,6 +2,7 @@
 
 namespace Modules\Reservation\Http\Services;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Modules\Reservation\Dao\Models\Booking;
 use Modules\System\Dao\Interfaces\CrudInterface;
@@ -60,6 +61,15 @@ class BookingCreateService
 
             $booked['booking_code'] = $code;
             $check = $repository->saveRepository($booked);
+
+            $user = User::find($data->booking_member_id);
+            if($user){
+                $saldo = $user->saldo;
+                if($saldo > 0 && $data->booking_dp > 0){
+                    $user->saldo = $saldo - $data->booking_dp;
+                    $user->save();
+                }
+            }
 
             if (isset($check['status']) && $check['status']) {
 

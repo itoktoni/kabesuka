@@ -44,11 +44,11 @@ Route::match(
     function () {
         $promo = 0;
         $input = request()->get('id');
-        $total = Helper::filterInput(request()->get('value'));
+        $value = Helper::filterInput(request()->get('value'));
         $dp = empty(request()->get('dp')) ? 0 : request()->get('dp');
         $query = Promo::where('promo_code', $input)->first();
 
-        $total = $total - Helper::filterInput($dp);
+        $total = $value + Helper::filterInput($dp);
         $name = '';
 
         if ($query) {

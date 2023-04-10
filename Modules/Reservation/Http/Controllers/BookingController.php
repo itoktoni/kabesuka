@@ -88,6 +88,7 @@ class BookingController extends Controller
             'jam' => $jam,
             'meja' => $meja,
             'payment' => $payment,
+            'dp' => 0,
         ];
 
         return array_merge($view, $data);
@@ -135,6 +136,12 @@ class BookingController extends Controller
     {
         $model = $this->get($code);
 
+        $dp = 0;
+
+        if((!empty($model->booking_qris_date) && $model->booking_qris_status == 'paid') || (empty($model->booking_qris_date))){
+            $dp = $model->booking_dp;
+        }
+
         $area = $city = [];
 
         $province_data = request()->get('customer_province') ?? $model->customer_province ?? null;
@@ -156,6 +163,7 @@ class BookingController extends Controller
             'model' => $model,
             'city' => $city,
             'area' => $area,
+            'dp' => $dp,
         ]));
     }
 

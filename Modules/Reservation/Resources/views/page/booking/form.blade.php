@@ -164,7 +164,7 @@
 
     {!! Form::label('name', __('DP'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
     <div class="col-md-2 col-sm-2 {{ $errors->has('booking_dp') ? 'has-error' : ''}}">
-        {!! Form::text('booking_dp', null, ['class' => 'form-control dp']) !!}
+        {!! Form::text('booking_dp', $dp, ['class' => 'form-control dp']) !!}
         {!! $errors->first('booking_dp', '<p class="help-block">:message</p>') !!}
     </div>
 
@@ -242,8 +242,8 @@ function calculate(discount = 0) {
 
     var qty = parseInt(anak) + parseInt(lansia) + parseInt(dewasa);
 
-    var value = (total_anak + total_dewasa + total_lansia) - dp;
-    var total = value;
+    var value = (total_anak + total_dewasa + total_lansia) - parseInt(dp);
+    total = value + parseInt(dp);
 
     if(value == '' || value == '0'){
         alert('Masukan Qty Orang!');
@@ -340,12 +340,12 @@ $('.member').change(function(e) {
                 $('.name').val('');
                 $('.phone').val('');
                 $('.email').val('');
-                $('.dp').val('');
+                // $('.dp').val('');
 
                 $('.name').val(result.name);
                 $('.phone').val(result.phone);
                 $('.email').val(result.email);
-                $('.dp').val(result.saldo);
+                // $('.dp').val(result.saldo);
             } else {
                 $('.name').val('');
                 $('.phone').val('');

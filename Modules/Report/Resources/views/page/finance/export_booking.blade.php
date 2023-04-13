@@ -24,10 +24,10 @@
                 <th class="text-right" style="width:7%">Anak</th>
                 <th class="text-right" style="width:7%">Lansia</th>
                 <th class="text-right" style="width:5%">Qty</th>
-                <th class="text-right" style="width:10%">Value</th>
+                <th class="text-right" style="width:10%">Billing</th>
                 <th class="text-right" style="width:10%">DP</th>
                 <th class="text-right" style="width:10%">Discount</th>
-                <th class="text-right" style="width:10%">Total</th>
+                <th class="text-right" style="width:10%">Total Billing</th>
                 <th class="text-right" style="width:15%">Tagihan</th>
                 <th class="text-right" style="width:15%">Metode</th>
                 <th class="text-right" style="width:10%">Status</th>
@@ -40,6 +40,7 @@
             @foreach($preview as $data)
             @php
             $total = (($data->booking_value + $data->booking_dp) - $data->booking_discount_value);
+            $tagihan = $total - $data->booking_dp;
             $grand_total = $grand_total + $total;
             @endphp
             <tr>
@@ -54,7 +55,7 @@
                 <td class="text-right" data-title="Total">{{ Helper::createRupiah($data->booking_dp) }} </td>
                 <td class="text-right" data-title="Total">{{ Helper::createRupiah($data->booking_discount_value) }}</td>
                 <td class="text-right" data-title="Pembayaran">{{ Helper::createRupiah($total) }} </td>
-                <td class="text-right" data-title="Pembayaran">{{ Helper::createRupiah($data->booking_summary) }} </td>
+                <td class="text-right" data-title="Pembayaran">{{ Helper::createRupiah($tagihan) }} </td>
                 <td class="text-right" data-title="Outstanding">{{ $data->booking_metode }} </td>
                 <td class="text-right" data-title="Outstanding">{{ BookingType::getDescription($data->booking_status) }} </td>
             </tr>
@@ -67,7 +68,7 @@
 
     <table>
         <tr>
-            <td class="total" data-title="" colspan="13">Grand Total</td>
+            <td class="total" data-title="" colspan="13">Grand Total Omzet</td>
             <td class="total text-right" data-title="Grand Total">
                 {{ Helper::createRupiah($grand_total) }}
             </td>

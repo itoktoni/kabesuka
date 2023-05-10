@@ -929,6 +929,7 @@ class Helper
         $nohp = str_replace(".", "", $nohp);
         // kadang ada penulisan np hp 0811-4242-2424
         $nohp = str_replace("-", "", $nohp);
+        $hp = false;
 
         // cek apakah no hp mengandung karakter + dan 0-9
         if (!preg_match('/[^+0-9]/', trim($nohp))) {

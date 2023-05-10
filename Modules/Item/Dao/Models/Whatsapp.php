@@ -97,7 +97,7 @@ class Whatsapp extends Model
                 $model->wa_image = $name;
             }
 
-            if(!empty($model->wa_user_id)){
+            if(!empty($model->wa_user_id) && $model->wa_user_id != 0){
 
                 $user = User::find($model->wa_user_id);
                 $phone = $user->phone ?? '';
@@ -112,14 +112,19 @@ class Whatsapp extends Model
                         $gambar = Helper::files('template/'.$template->template_image);
                     }
 
-                    Notifikasi::create([
-                        'notifikasi_name' => $name,
-                        'notifikasi_content' => $content,
-                        'notifikasi_image' => $gambar,
-                        'notifikasi_phone' => Helper::convertPhone($phone),
-                        'notifikasi_start' => date('Y-m-d H:i:s'),
-                        'notifikasi_type' => $template->template_type ?? 'text',
-                    ]);
+                    $hp = Helper::convertPhone($phone);
+
+                    if($hp){
+
+                        Notifikasi::create([
+                            'notifikasi_name' => $name,
+                            'notifikasi_content' => $content,
+                            'notifikasi_image' => $gambar,
+                            'notifikasi_phone' => $hp,
+                            'notifikasi_start' => date('Y-m-d H:i:s'),
+                            'notifikasi_type' => $template->template_type ?? 'text',
+                        ]);
+                    }
                 }
             }
             else{
@@ -138,14 +143,19 @@ class Whatsapp extends Model
                             $gambar = Helper::files('template/'.$template->template_image);
                         }
 
-                        Notifikasi::create([
-                            'notifikasi_name' => $name,
-                            'notifikasi_content' => $content,
-                            'notifikasi_image' => $gambar,
-                            'notifikasi_phone' => Helper::convertPhone($phone),
-                            'notifikasi_start' => date('Y-m-d H:i:s'),
-                            'notifikasi_type' => $template->template_type ?? 'text',
-                        ]);
+                        $hp = Helper::convertPhone($phone);
+
+                        if($hp){
+                            Notifikasi::create([
+                                'notifikasi_name' => $name,
+                                'notifikasi_content' => $content,
+                                'notifikasi_image' => $gambar,
+                                'notifikasi_phone' => $hp,
+                                'notifikasi_start' => date('Y-m-d H:i:s'),
+                                'notifikasi_type' => $template->template_type ?? 'text',
+                            ]);
+                        }
+
                     }
                 }
             }

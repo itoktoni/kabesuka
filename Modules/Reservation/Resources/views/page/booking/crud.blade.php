@@ -7,7 +7,7 @@
         <a href="{!! route($route_create) !!}" class="btn btn-success">{{ __('Create') }}</a>
         @endif
 
-        @if(isset($actions['delete']))
+        @if(isset($actions['delete']) and auth()->user()->group_user != 'kasir')
         <button type="submit" onclick="return confirm('Are you sure to delete data ?');" id="delete-action"
             value="delete" name="action" class="btn btn-danger">{{ __('Delete') }}</button>
         @endif

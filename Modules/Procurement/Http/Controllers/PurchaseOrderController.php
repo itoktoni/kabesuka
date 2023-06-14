@@ -82,7 +82,7 @@ class PurchaseOrderController extends Controller
 
     public function index()
     {
-        return view(Views::index())->with([
+        return view(Views::index(config('page'), config('folder')))->with([
             'fields' => Helper::listData(self::$model->datatable),
         ]);
     }

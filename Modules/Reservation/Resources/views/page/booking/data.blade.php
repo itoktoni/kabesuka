@@ -88,7 +88,7 @@
                             </tr>
                         </thead>
                     </table>
-                    @include($template_action)
+                    @include($folder.'::page.'.$template.'.crud')
                     {!! Form::close() !!}
                 </div>
 

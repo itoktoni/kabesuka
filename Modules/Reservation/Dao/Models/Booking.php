@@ -148,7 +148,7 @@ class Booking extends Model
         parent::saving(function ($model) {
 
             if ($model->booking_status == BookingType::Finish) {
-                $user = User::find(request()->get('booking_member_id'));
+                $user = User::where('email', request()->get('booking_email'))->first();
                 if ($user) {
                     $user->point = $user->point + 1;
                     $user->save();

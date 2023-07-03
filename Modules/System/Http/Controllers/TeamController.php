@@ -28,6 +28,7 @@ use Modules\System\Plugins\Response;
 use Modules\System\Plugins\Views;
 use Modules\System\Http\Requests\DeleteRequest;
 use Illuminate\Support\Str;
+use Modules\Reservation\Dao\Models\Booking;
 
 class TeamController extends Controller
 {
@@ -93,7 +94,10 @@ class TeamController extends Controller
     public function edit($code)
     {
         $data = $this->get($code);
+        $qty = Booking::where('booking_email', $data->email)
+        ->where('booking_status', '>=', 3)->count();
         return view(Views::update())->with($this->share([
+            'qty' => $qty,
             'model' => $data,
             'default' => $data->group_user,
         ]));

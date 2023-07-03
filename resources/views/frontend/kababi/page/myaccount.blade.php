@@ -57,7 +57,7 @@
                             <td data-header="Status" class="text-right">
                                 {{ $status[$item->sales_order_status] ?? '' }}
                             </td>
-                           
+
                         </tr>
                         <!-- Modal Order -->
                         <div class="modal fade" id="{{ $item->sales_order_id ?? '' }}" tabindex="-1" role="dialog"

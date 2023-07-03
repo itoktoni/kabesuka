@@ -34,7 +34,7 @@
 
 	<label class="col-md-1 control-label">{{ __('Point') }}</label>
 	<div class="col-md-1 {{ $errors->has('point') ? 'has-error' : ''}}">
-		{!! Form::text('point', null, ['class' => 'form-control', 'autocomplete' => false]) !!}
+		{!! Form::text('point', $qty ?? 0, ['class' => 'form-control', 'autocomplete' => false]) !!}
 		{!! $errors->first('point', '<p class="help-block">:message</p>') !!}
 	</div>
 

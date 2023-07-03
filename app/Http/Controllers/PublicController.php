@@ -177,9 +177,14 @@ class PublicController extends Controller
 
     public function account()
     {
+        $qty = 0;
         if (Auth::check()) {
             $data = Booking::where('booking_member_id', Auth::user()->id);
             $user = User::find(Auth::user()->id);
+
+            $qty = Booking::where('booking_email', $user->email)
+            ->where('booking_status', '>=', 3)
+            ->count();
         };
 
         if (request()->isMethod('POST')) {
@@ -209,6 +214,7 @@ class PublicController extends Controller
         return View('frontend.kababi.page.userprofile')->with([
             'model' => $user,
             'order' => $data,
+            'qty' => $qty,
         ]);
     }
 

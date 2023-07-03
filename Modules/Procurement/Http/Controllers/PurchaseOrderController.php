@@ -210,6 +210,10 @@ class PurchaseOrderController extends Controller
             $status = [$data->mask_status => PurchaseStatus::getDescription($data->mask_status)];
         }
 
+        if (auth()->user()->group_user == GroupUserType::Kasir) {
+            $status = PurchaseStatus::getOptions([PurchaseStatus::Create, PurchaseStatus::Receive]);
+        }
+
         return view(Views::form(Helper::snake(__FUNCTION__), config('page'), config('folder')))
             ->with($this->share([
                 'model' => $data,

@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Modules\Procurement\Dao\Facades\PoReceiveFacades;
 use Modules\Procurement\Dao\Facades\StockFacades;
+use Modules\Reservation\Dao\Models\Booking;
 use Modules\System\Dao\Facades\FilterFacades;
 use Modules\System\Dao\Facades\TeamFacades;
 use Thedevsaddam\LaravelSchema\Schema\Schema as Table;
@@ -999,5 +1000,18 @@ class Helper
         $curl = curl_init();
 
         return $result;
+    }
+
+    public static function point($email){
+        $point = Booking::where('booking_email', $email)
+        ->where('booking_discount_code','!=', '10_x')
+        ->where('booking_status', '>=', 3)
+        ->count();
+
+        $dipake = Booking::where('booking_discount_code', '10_x')
+        ->where('booking_email', $email)
+        ->count() * 10;
+
+        return $point - ($dipake * 10);
     }
 }

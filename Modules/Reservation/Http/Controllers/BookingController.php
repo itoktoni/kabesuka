@@ -136,7 +136,7 @@ class BookingController extends Controller
     {
         $model = $this->get($code);
 
-        $dp = 0;
+        $dp = $qty = 0;
 
         if((!empty($model->booking_qris_date) && $model->booking_qris_status == 'paid') || (empty($model->booking_qris_date))){
             $dp = $model->booking_dp;
@@ -159,11 +159,14 @@ class BookingController extends Controller
             ->pluck('rajaongkir_area_name','rajaongkir_area_id')->prepend('- Select Area -');
         }
 
+        $qty = Helper::point($model->booking_email);
+
         return view(Views::update(config('page'), config('folder')))->with($this->share([
             'model' => $model,
             'city' => $city,
             'area' => $area,
             'dp' => $dp,
+            'qty' => $qty,
         ]));
     }
 

@@ -94,8 +94,9 @@ class TeamController extends Controller
     public function edit($code)
     {
         $data = $this->get($code);
-        $qty = Booking::where('booking_email', $data->email)
-        ->where('booking_status', '>=', 3)->count();
+
+        $qty = Helper::point($data->email);
+
         return view(Views::update())->with($this->share([
             'qty' => $qty,
             'model' => $data,

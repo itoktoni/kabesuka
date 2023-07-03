@@ -53,14 +53,20 @@
     </div>
 
     {!! Form::label('name', __('Phone'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
-    <div class="col-md-3 col-sm-3 {{ $errors->has('booking_phone') ? 'has-error' : ''}}">
+    <div class="col-md-2 col-sm-2 {{ $errors->has('booking_phone') ? 'has-error' : ''}}">
         {!! Form::text('booking_phone', null, ['class' => 'form-control phone']) !!}
         {!! $errors->first('booking_phone', '<p class="help-block">:message</p>') !!}
     </div>
 
     {!! Form::label('name', __('Birthday'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
-    <div class="col-md-3 col-sm-3 {{ $errors->has('birthday') ? 'has-error' : ''}}">
+    <div class="col-md-2 col-sm-2 {{ $errors->has('birthday') ? 'has-error' : ''}}">
         {!! Form::text('birthday', old('birthday') ?? null, ['class' => 'form-control date']) !!}
+        {!! $errors->first('birthday', '<p class="help-block">:message</p>') !!}
+    </div>
+
+    {!! Form::label('name', __('Point'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-1 col-sm-1 {{ $errors->has('birthday') ? 'has-error' : ''}}">
+        {!! Form::text('point', $qty ?? null, ['class' => 'form-control qty']) !!}
         {!! $errors->first('birthday', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -340,16 +346,19 @@ $('.member').change(function(e) {
                 $('.name').val('');
                 $('.phone').val('');
                 $('.email').val('');
+                $('.qty').val('');
                 // $('.dp').val('');
 
                 $('.name').val(result.name);
                 $('.phone').val(result.phone);
                 $('.email').val(result.email);
+                $('.qty').val(result.qty);
                 // $('.dp').val(result.saldo);
             } else {
                 $('.name').val('');
                 $('.phone').val('');
                 $('.email').val('');
+                $('.qty').val('');
             }
         }
     });

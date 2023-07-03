@@ -182,9 +182,7 @@ class PublicController extends Controller
             $data = Booking::where('booking_member_id', Auth::user()->id);
             $user = User::find(Auth::user()->id);
 
-            $qty = Booking::where('booking_email', $user->email)
-            ->where('booking_status', '>=', 3)
-            ->count();
+            $qty = Helper::point($user->email);
         };
 
         if (request()->isMethod('POST')) {

@@ -7,6 +7,7 @@ use Modules\Reservation\Dao\Enums\BookingType;
 use Modules\Reservation\Dao\Models\Booking;
 use Modules\Reservation\Dao\Models\Promo;
 use Modules\System\Plugins\Helper;
+use PHPUnit\TextUI\Help;
 
 Auth::routes(['verify' => true]);
 
@@ -19,7 +20,9 @@ Route::match(
     function () {
         $input = request()->get('id');
         $query = User::where('id', $input);
-        return $query->first();
+        $data = $query->first();
+        $data['qty'] = Helper::point($data->email);
+        return $data;
     }
 )->name('user');
 

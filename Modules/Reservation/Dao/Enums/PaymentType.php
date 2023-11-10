@@ -14,6 +14,8 @@ class PaymentType extends Enum
     const DEBIT = 'DEBIT';
     const QRIS_ONLINE = 'QRIS_ONLINE';
     const QRIS_OFFLINE = 'QRIS_OFFLINE';
+    const TRANSFER = 'TRANSFER';
+    const APPS = 'APPS';
 
     public static function colors()
     {
@@ -22,11 +24,13 @@ class PaymentType extends Enum
             self::DEBIT => ColorType::Warning,
             self::QRIS_ONLINE => ColorType::Info,
             self::QRIS_OFFLINE => ColorType::Success,
+            self::TRANSFER => ColorType::Brown,
+            self::APPS => ColorType::Grey,
         ];
     }
 
     public static function name()
     {
-        return 'Supplier Type';
+        return 'Payment Type';
     }
 }

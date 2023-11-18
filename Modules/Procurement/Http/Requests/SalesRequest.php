@@ -79,9 +79,8 @@ class SalesRequest extends FormRequest
         $total_data = ($total_value - $discount_value);
         $total_tax = ($total_data * env('PPN')) / 100;
         $total_summary = $total_data + $total_tax;
-
         $this->merge([
-            'so_customer_name' => !empty($this->so_customer_name) ? $this->request()->so_customer_name : 'Walk Customer',
+            'so_customer_name' => !empty($this->so_customer_name) ? $this->so_customer_name : 'Walk Customer',
             SoFacades::getKeyName() => $autonumber,
             SoFacades::mask_value() => $total_value,
             SoFacades::mask_tax() => $total_tax,

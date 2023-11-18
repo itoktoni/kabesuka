@@ -1,5 +1,3 @@
-<x-mask :array="['number', 'money']" />
-
 <div class="form-group">
 
     {!! Form::label('name', __('Category'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
@@ -27,26 +25,26 @@
         {!! $errors->first('product_image', '<p class="help-block">:message</p>') !!}
     </div>
 
-    {!! Form::label('name', __('Show in Web'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-4 col-sm-4 {{ $errors->has('product_frontend') ? 'has-error' : ''}}">
-        {{ Form::select('product_frontend', ['0' => 'No', '1' => 'Yes'], null, ['class'=> 'form-control', 'id' => 'category']) }}
-        {!! $errors->first('product_frontend', '<p class="help-block">:message</p>') !!}
+    {!! Form::label('name', __('Partner'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
+    <div class="col-md-4 col-sm-4 {{ $errors->has('product_partner_id') ? 'has-error' : ''}}">
+        {{ Form::select('product_partner_id', $partner, null, ['class'=> 'form-control', 'id' => 'category']) }}
+        {!! $errors->first('product_partner_id', '<p class="help-block">:message</p>') !!}
     </div>
 
 </div>
 
 <div class="form-group">
 
-    {!! Form::label('name', __('Minimum'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-4 col-sm-4 {{ $errors->has('product_min') ? 'has-error' : ''}}">
-        {!! Form::number('product_min', null, ['class' => 'form-control']) !!}
-        {!! $errors->first('product_min', '<p class="help-block">:message</p>') !!}
+    {!! Form::label('name', __('Harga Titip'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
+    <div class="col-md-4 col-sm-4 {{ $errors->has('product_buy') ? 'has-error' : ''}}">
+        {!! Form::number('product_buy', null, ['class' => 'form-control']) !!}
+        {!! $errors->first('product_buy', '<p class="help-block">:message</p>') !!}
     </div>
 
-    {!! Form::label('name', __('Price'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-4 col-sm-4 {{ $errors->has('product_buy') ? 'has-error' : ''}}">
-        {!! Form::text('product_buy', null, ['class' => 'form-control number']) !!}
-        {!! $errors->first('product_buy', '<p class="help-block">:message</p>') !!}
+    {!! Form::label('name', __('Harga Jual'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
+    <div class="col-md-4 col-sm-4 {{ $errors->has('product_sell') ? 'has-error' : ''}}">
+        {!! Form::text('product_sell', null, ['class' => 'form-control number']) !!}
+        {!! $errors->first('product_sell', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 

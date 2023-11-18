@@ -81,6 +81,7 @@ class SalesRequest extends FormRequest
         $total_summary = $total_data + $total_tax;
 
         $this->merge([
+            'so_customer_name' => !empty($this->so_customer_name) ? $this->request()->so_customer_name : 'Walk Customer',
             SoFacades::getKeyName() => $autonumber,
             SoFacades::mask_value() => $total_value,
             SoFacades::mask_tax() => $total_tax,

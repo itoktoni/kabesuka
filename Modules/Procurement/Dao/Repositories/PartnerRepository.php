@@ -1,26 +1,19 @@
 <?php
 
-namespace Modules\Item\Dao\Repositories;
+namespace Modules\Procurement\Dao\Repositories;
 
 use Illuminate\Database\QueryException;
-use Kirschbaum\PowerJoins\PowerJoins;
-use Modules\Item\Dao\Facades\CategoryFacades;
-use Modules\Item\Dao\Facades\ProductFacades;
-use Modules\Item\Dao\Models\Makanan;
-use Modules\Item\Dao\Models\Product;
+use Modules\Procurement\Dao\Models\Partner;
 use Modules\System\Dao\Interfaces\CrudInterface;
 use Modules\System\Plugins\Helper;
 use Modules\System\Plugins\Notes;
 
-class MakananRepository extends Makanan implements CrudInterface
+class PartnerRepository extends Partner implements CrudInterface
 {
-    use PowerJoins;
     public function dataRepository()
     {
         $list = Helper::dataColumn($this->datatable);
-        return $this->select($list)
-            ->leftJoinRelationship('has_category')
-            ->leftJoinRelationship('has_partner');
+        return $this->select($list);
     }
 
     public function saveRepository($request)

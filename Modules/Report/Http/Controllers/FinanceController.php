@@ -5,6 +5,7 @@ namespace Modules\Report\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Modules\Item\Dao\Repositories\ProductRepository;
 use Modules\Procurement\Dao\Enums\PurchaseStatus;
+use Modules\Procurement\Dao\Repositories\PartnerRepository;
 use Modules\Procurement\Dao\Repositories\PurchaseRepository;
 use Modules\Procurement\Dao\Repositories\SupplierRepository;
 use Modules\Report\Dao\Repositories\ReportBookingFinance;
@@ -31,10 +32,12 @@ class FinanceController extends Controller
         $product = Views::option(new ProductRepository());
         $customer = Views::option(new TeamRepository());
         $supplier = Views::option(new SupplierRepository());
+        $partner = Views::option(new PartnerRepository());
         $status = PurchaseStatus::getOptions();
         $booking = array_merge(['' => 'Semua Status'], BookingType::getOptions());
         $payment = PaymentType::getOptions();
         $view = [
+            'partner' => $partner,
             'supplier' => $supplier,
             'product' => $product,
             'payment' => array_merge(['- Pilih Pembayaran -'], $payment),

@@ -32,13 +32,26 @@
         </thead>
         <tbody>
             @php
-                $grand_total = 0;
+                $grand_total = $grand_nitip = 0;
             @endphp
             @if(!empty($preview))
             @foreach($preview as $data)
             @if($detail = $data->has_detail)
             @foreach($detail as $item)
             @php
+
+                $partner_id = false;
+                if($partner_data = request()->get('so_partner_id')){
+                   $partner_id = $item->has_product->product_partner_id;
+                   $product_buy = $item->has_product->product_buy;
+                   $total_nitip = $item->mask_qty * $product_buy;
+                    $grand_nitip = $grand_nitip + $total_nitip;
+                }
+
+                if ($partner_data != $partner_id) {
+                    continue;
+                }
+
                 $discount = $tax = 0;
                 if($loop->iteration == 1){
                     $discount = $data->so_discount_value;
@@ -69,6 +82,16 @@
                 <td class="total" data-title="" colspan="10">Grand Total</td>
                 <td class="total text-right" data-title="Grand Total">{{ Helper::createRupiah($grand_total) }}</td>
             </tr>
+            @if($partner_data)
+            <tr>
+                <td class="total" data-title="" colspan="10">Grand Nitip</td>
+                <td class="total text-right" data-title="Grand Total">{{ Helper::createRupiah($grand_nitip) }}</td>
+            </tr>
+            <tr>
+                <td class="total" data-title="" colspan="10">Yang Harus Dibayar Ke Partner</td>
+                <td class="total text-right" data-title="Grand Total">{{ Helper::createRupiah($grand_total - $grand_nitip) }}</td>
+            </tr>
+            @endif
         </tbody>
     </table>
 </div>

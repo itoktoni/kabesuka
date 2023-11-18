@@ -200,7 +200,11 @@
                 success: function(result) {
                     if (result) {
                         // console.log(result);
-                        var mask_price = number_format(result.product_buy.toString());
+                        if (result.product_sell) {
+                            var mask_price = number_format(result.product_sell.toString());
+                        } else {
+                            var mask_price = number_format(result.product_buy.toString());
+                        }
                         var price = $('#price').val(mask_price);
                         var sub_total = $('#sub_total').val(mask_price);
                         // var desc = $('#desc').val(result.product_description);

@@ -5,7 +5,9 @@ namespace Modules\Item\Dao\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Item\Dao\Facades\CategoryFacades;
+use Modules\Procurement\Dao\Facades\PartnerFacades;
 use Modules\Procurement\Dao\Facades\SupplierFacades;
+use Modules\Procurement\Dao\Models\Partner;
 use Modules\Procurement\Dao\Models\Supplier;
 use Modules\System\Plugins\Helper;
 
@@ -29,7 +31,7 @@ class Makanan extends Model
         'product_image',
         'product_unit_code',
         'product_category_id',
-        'product_supplier_id',
+        'product_partner_id',
         'product_created_at',
         'product_updated_at',
         'product_deleted_at',
@@ -46,7 +48,6 @@ class Makanan extends Model
     public $rules = [
         'product_name' => 'required|min:3',
         'product_category_id' => 'required',
-        'product_buy' => 'required|integer',
     ];
 
     const CREATED_AT = 'product_created_at';
@@ -68,14 +69,16 @@ class Makanan extends Model
     public $datatable = [
         'product_id' => [true => 'Code', 'width' => 50],
         'product_sku' => [true => 'Kode Barang', 'width' => 100],
-        'product_supplier_id' => [false => 'Supplier'],
+        'product_partner_id' => [false => 'Partner'],
         'category_name' => [true => 'Category'],
+        'partner_name' => [true => 'Partner'],
         'product_name' => [true => 'Name'],
         'product_image' => [false => 'Name'],
         'product_frontend' => [false => 'Name'],
         'product_unit_code' => [true => 'Unit'],
         'product_min' => [true => 'Min Stock', 'width' => 100],
-        'product_buy' => [false => 'Buy', 'width' => 100],
+        'product_buy' => [true => 'Titip', 'width' => 100],
+        'product_sell' => [true => 'Jual', 'width' => 100],
         'product_image' => [false => 'Image', 'width' => 100, 'class' => 'text-center'],
         'product_description' => [false => 'Image'],
     ];
@@ -170,22 +173,22 @@ class Makanan extends Model
         return $this->{$this->mask_category_id()};
     }
 
-    public function mask_supplier_id()
+    public function mask_partner_id()
     {
-        return 'product_supplier_id';
+        return 'product_partner_id';
     }
 
-    public function setMaskSupplierIdAttribute($value)
+    public function setMaskAPartnerIdAttribute($value)
     {
-        $this->attributes[$this->mask_supplier_id()] = $value;
+        $this->attributes[$this->mask_partner_id()] = $value;
     }
 
-    public function getMaskSupplierIdAttribute()
+    public function getMaskAPartnerIdAttribute()
     {
-        return $this->{$this->mask_supplier_id()};
+        return $this->{$this->mask_partner_id()};
     }
 
-    public function getMaskSupplierNameAttribute()
+    public function getMaskAPartnerNameAttribute()
     {
         return $this->has_supplier->mask_name ?? '';
     }
@@ -240,8 +243,8 @@ class Makanan extends Model
         return $this->hasOne(CategoryMakanan::class, CategoryFacades::getKeyName(), $this->mask_category_id());
     }
 
-    public function has_supplier()
+    public function has_partner()
     {
-        return $this->hasOne(Supplier::class, SupplierFacades::getKeyName(), $this->mask_supplier_id());
+        return $this->hasOne(Partner::class, 'partner_id', $this->mask_partner_id());
     }
 }

@@ -1,17 +1,11 @@
 <?php
 
-namespace Modules\Item\Http\Controllers;
+namespace Modules\Procurement\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Modules\Item\Dao\Repositories\CategoryMakananRepository;
-use Modules\Item\Dao\Repositories\CategoryRepository;
-use Modules\Item\Dao\Repositories\MakananRepository;
-use Modules\Item\Dao\Repositories\ProductRepository;
-use Modules\Item\Dao\Repositories\UnitRepository;
-use Modules\Item\Http\Requests\ProductRequest;
+use Modules\Procurement\Dao\Enums\PartnerPph;
+use Modules\Procurement\Dao\Enums\PartnerPpn;
 use Modules\Procurement\Dao\Repositories\PartnerRepository;
-use Modules\Procurement\Dao\Repositories\SupplierRepository;
 use Modules\System\Http\Requests\DeleteRequest;
 use Modules\System\Http\Requests\GeneralRequest;
 use Modules\System\Http\Services\CreateService;
@@ -23,13 +17,13 @@ use Modules\System\Plugins\Helper;
 use Modules\System\Plugins\Response;
 use Modules\System\Plugins\Views;
 
-class MakananController extends Controller
+class PartnerController extends Controller
 {
     public static $template;
     public static $service;
     public static $model;
 
-    public function __construct(MakananRepository $model, SingleService $service)
+    public function __construct(PartnerRepository $model, SingleService $service)
     {
         self::$model = self::$model ?? $model;
         self::$service = self::$service ?? $service;
@@ -37,14 +31,10 @@ class MakananController extends Controller
 
     private function share($data = [])
     {
-        $category = Views::option(new CategoryMakananRepository());
-        $partner = Views::option(new PartnerRepository());
-        $unit = Views::option(new UnitRepository());
         $view = [
-            'unit' => $unit,
-            'partner' => $partner,
-            'category' => $category,
+
         ];
+
         return array_merge($view, $data);
     }
 
@@ -60,7 +50,7 @@ class MakananController extends Controller
         return view(Views::create())->with($this->share());
     }
 
-    public function save(Request $request, CreateService $service)
+    public function save(GeneralRequest $request, CreateService $service)
     {
         $data = $service->save(self::$model, $request);
         return Response::redirectBack($data);
@@ -70,9 +60,6 @@ class MakananController extends Controller
     {
         return $service
             ->setModel(self::$model)
-            ->EditColumn([
-               'makanan_partner_id' => 'mask_partner_name',
-            ])
             ->make();
     }
 
@@ -83,7 +70,7 @@ class MakananController extends Controller
         ]));
     }
 
-    public function update($code, Request $request, UpdateService $service)
+    public function update($code, GeneralRequest $request, UpdateService $service)
     {
         $data = $service->update(self::$model, $request, $code);
         return Response::redirectBack($data);

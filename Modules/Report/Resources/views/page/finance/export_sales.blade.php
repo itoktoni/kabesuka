@@ -33,6 +33,7 @@
         <tbody>
             @php
                 $grand_total = $grand_nitip = 0;
+                $partner_data = null;
             @endphp
             @if(!empty($preview))
             @foreach($preview as $data)

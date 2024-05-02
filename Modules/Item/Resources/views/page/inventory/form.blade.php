@@ -53,7 +53,7 @@
         }
         @endphp
         <tr>
-            <input type="hidden" value="{{ $item->product_id }}" name="detail[{{ $loop->index }}][temp_id]">
+            <input type="hidden" value="{{ $item->product_id ?? '' }}" name="detail[{{ $loop->index }}][temp_id]">
             <td data-title="Product">
                 <input type="text" readonly class="form-control input-sm" value="{{ $item->product_name ?? '' }}">
             </td>

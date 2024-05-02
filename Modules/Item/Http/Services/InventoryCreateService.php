@@ -50,6 +50,8 @@ class InventoryCreateService extends UpdateService
             // Inventory::updateOrCreate($key, $inventory);
         }
 
+        dd($inventory);
+
         Inventory::upsert($inventory, ['inventory_code', 'inventory_product_id', 'inventory_date']);
         $check = true;
 

@@ -38,6 +38,7 @@ class Inventory extends Model
     public $timestamps = true;
     public $incrementing = true;
     public $rules = [
+        'type' => 'required'
     ];
 
     public $searching = 'inventory_code';

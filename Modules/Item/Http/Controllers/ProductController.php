@@ -66,7 +66,7 @@ class ProductController extends Controller
     {
         return $service
             ->setModel(self::$model)
-            ->EditStatus([self::$model->mask_enable() => EnableStatus::class])
+            ->EditStatus(['product_warehouse' => EnableStatus::class])
             ->make();
     }
 

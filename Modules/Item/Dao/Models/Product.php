@@ -4,14 +4,16 @@ namespace Modules\Item\Dao\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kirschbaum\PowerJoins\PowerJoins;
 use Modules\Item\Dao\Facades\CategoryFacades;
 use Modules\Procurement\Dao\Facades\SupplierFacades;
 use Modules\Procurement\Dao\Models\Supplier;
+use Modules\System\Dao\Enums\EnableStatus;
 use Modules\System\Plugins\Helper;
 
 class Product extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, PowerJoins;
 
     protected $table = 'product';
     protected $primaryKey = 'product_id';
@@ -27,6 +29,7 @@ class Product extends Model
         'product_max',
         'product_price',
         'product_image',
+        'product_warehouse',
         'product_unit_code',
         'product_category_id',
         'product_supplier_id',
@@ -62,6 +65,7 @@ class Product extends Model
         'product_sell' => 'integer',
         'product_price' => 'integer',
         'product_tax_code' => 'string',
+        'product_warehouse' => 'integer',
     ];
 
     public $searching = 'product_name';
@@ -71,13 +75,13 @@ class Product extends Model
         'product_supplier_id' => [false => 'Supplier'],
         'category_name' => [true => 'Category'],
         'product_name' => [true => 'Name'],
-        'product_image' => [true => 'Name'],
         'product_frontend' => [true => 'Name'],
         'product_unit_code' => [true => 'Unit'],
         'product_min' => [true => 'Min Stock', 'width' => 100],
         'product_buy' => [false => 'Buy', 'width' => 100],
         'product_image' => [false => 'Image', 'width' => 100, 'class' => 'text-center'],
         'product_description' => [false => 'Image'],
+        'product_warehouse' => [true => 'Warehouse'],
     ];
 
     public function mask_name()
@@ -205,6 +209,27 @@ class Product extends Model
         return $this->{$this->mask_description()};
     }
 
+    public function mask_enable()
+    {
+        return 'product_warehouse';
+    }
+
+    public function setMaskEnableAttribute($value)
+    {
+        $this->attributes[$this->mask_enable()] = $value;
+    }
+
+    public function getMaskEnableAttribute()
+    {
+        return $this->{$this->mask_enable()};
+    }
+
+    public function getMaskEnableName($value)
+    {
+        return EnableStatus::getDescription($this->mask_enable);
+    }
+
+
     public static function boot()
     {
         parent::boot();
@@ -243,5 +268,10 @@ class Product extends Model
     public function has_supplier()
     {
         return $this->hasOne(Supplier::class, SupplierFacades::getKeyName(), $this->mask_supplier_id());
+    }
+
+    public function has_inventory()
+    {
+        return $this->hasOne(Inventory::class, 'inventory_product_id', 'product_id');
     }
 }

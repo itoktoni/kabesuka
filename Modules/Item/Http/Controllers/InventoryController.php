@@ -3,29 +3,28 @@
 namespace Modules\Item\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Modules\Item\Dao\Repositories\CategoryRepository;
-use Modules\Item\Dao\Repositories\ProductRepository;
-use Modules\Item\Dao\Repositories\UnitRepository;
-use Modules\Item\Http\Requests\ProductRequest;
-use Modules\Procurement\Dao\Repositories\SupplierRepository;
-use Modules\System\Dao\Enums\EnableStatus;
+use Modules\Item\Dao\Models\Product;
+use Modules\Item\Dao\Repositories\InventoryRepository;
+use Modules\Item\Dao\Repositories\ReportInventory;
+use Modules\Item\Http\Services\InventoryCreateService;
 use Modules\System\Http\Requests\DeleteRequest;
-use Modules\System\Http\Services\CreateService;
+use Modules\System\Http\Requests\GeneralRequest;
 use Modules\System\Http\Services\DataService;
 use Modules\System\Http\Services\DeleteService;
+use Modules\System\Http\Services\ReportService;
 use Modules\System\Http\Services\SingleService;
 use Modules\System\Http\Services\UpdateService;
 use Modules\System\Plugins\Helper;
 use Modules\System\Plugins\Response;
 use Modules\System\Plugins\Views;
 
-class ProductController extends Controller
+class InventoryController extends Controller
 {
     public static $template;
     public static $service;
     public static $model;
 
-    public function __construct(ProductRepository $model, SingleService $service)
+    public function __construct(InventoryRepository $model, SingleService $service)
     {
         self::$model = self::$model ?? $model;
         self::$service = self::$service ?? $service;
@@ -33,14 +32,21 @@ class ProductController extends Controller
 
     private function share($data = [])
     {
-        $category = Views::option(new CategoryRepository());
-        $supplier = Views::option(new SupplierRepository());
-        $unit = Views::option(new UnitRepository());
+        if ($date = request()->get('date')) {
+            $detail = Product::where('product_warehouse', 1)
+                ->leftJoinRelationship('has_inventory')
+                ->addSelect('inventory.*')
+                ->where('inventory_date', $date)
+                ->orderBy('product_name', 'ASC');
+
+        } else {
+            $detail = Product::where('product_warehouse', 1)->orderBy('product_name', 'ASC');
+        }
+
         $view = [
-            'unit' => $unit,
-            'supplier' => $supplier,
-            'category' => $category,
+            'detail' => $detail->get(),
         ];
+
         return array_merge($view, $data);
     }
 
@@ -51,12 +57,16 @@ class ProductController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(ReportInventory $repository, ReportService $service)
     {
+        if (request()->get('action') == 'excel') {
+            return $service->generate($repository, 'export');
+        }
+
         return view(Views::create())->with($this->share());
     }
 
-    public function save(ProductRequest $request, CreateService $service)
+    public function save(GeneralRequest $request, InventoryCreateService $service)
     {
         $data = $service->save(self::$model, $request);
         return Response::redirectBack($data);
@@ -66,20 +76,31 @@ class ProductController extends Controller
     {
         return $service
             ->setModel(self::$model)
-            ->EditStatus([self::$model->mask_enable() => EnableStatus::class])
             ->make();
     }
 
-    public function edit($code)
+    public function edit($code, ReportInventory $repository, ReportService $service)
     {
+        if (request()->get('action') == 'excel') {
+            return $service->generate($repository, 'export');
+        }
+
+        $detail = Product::where('product_warehouse', 1)
+            ->leftJoinRelationship('has_inventory')
+            ->addSelect('inventory.*')
+            ->where('inventory_code', $code)
+            ->orderBy('product_name', 'ASC')
+            ->get();
+
         return view(Views::update())->with($this->share([
             'model' => $this->get($code),
+            'detail' => $detail,
         ]));
     }
 
-    public function update($code, ProductRequest $request, UpdateService $service)
+    public function update($code, GeneralRequest $request, InventoryCreateService $service)
     {
-        $data = $service->update(self::$model, $request, $code);
+        $data = $service->save(self::$model, $request);
         return Response::redirectBack($data);
     }
 

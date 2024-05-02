@@ -62,7 +62,7 @@ class GroupModule extends Model
 	{
 		return $this->belongsToMany(Module::class, GroupModuleConnectionModuleFacades::getTable(), GroupModuleFacades::getKeyName(), ModuleFacades::getKeyName());
     }
-    
+
     public function connection_group_user()
 	{
 		return $this->belongsToMany(GroupUser::class, GroupUserConnectionGroupModuleFacades::getTable(), GroupModuleFacades::getKeyName(), GroupUserFacades::getKeyName());
@@ -98,7 +98,7 @@ class GroupModule extends Model
         });
     }
 
-    
+
     //mask show
 
     public function mask_enable()
@@ -115,10 +115,10 @@ class GroupModule extends Model
     {
         return $this->{$this->mask_enable()};
     }
-    
+
     public function getMaskEnableName($value)
     {
         return EnableStatus::getDescription($this->mask_enable);
     }
-    
+
 }

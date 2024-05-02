@@ -27,10 +27,15 @@
         {!! $errors->first('product_image', '<p class="help-block">:message</p>') !!}
     </div>
 
-    {!! Form::label('name', __('Show in Web'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-4 col-sm-4 {{ $errors->has('product_frontend') ? 'has-error' : ''}}">
+    {!! Form::label('name', __('Show in Web & Warehouse'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
+    <div class="col-md-2 col-sm-2 {{ $errors->has('product_frontend') ? 'has-error' : ''}}">
         {{ Form::select('product_frontend', ['0' => 'No', '1' => 'Yes'], null, ['class'=> 'form-control', 'id' => 'category']) }}
         {!! $errors->first('product_frontend', '<p class="help-block">:message</p>') !!}
+    </div>
+
+    <div class="col-md-2 col-sm-2 {{ $errors->has('product_warehouse') ? 'has-error' : ''}}">
+        {{ Form::select('product_warehouse', ['0' => 'No', '1' => 'Yes'], null, ['class'=> 'form-control', 'id' => 'category']) }}
+        {!! $errors->first('product_warehouse', '<p class="help-block">:message</p>') !!}
     </div>
 
 </div>
@@ -76,7 +81,7 @@
     </div>
 
     {!! Form::label('name', __('Description'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-10 col-sm-10 {{ $errors->has('product_description') ? 'has-error' : ''}}">
+    <div class="col-md-4 col-sm-4 {{ $errors->has('product_description') ? 'has-error' : ''}}">
         {!! Form::textarea('product_description', null, ['class' => 'form-control simple', 'rows' => '5']) !!}
         {!! $errors->first('product_description', '<p class="help-block">:message</p>') !!}
     </div>

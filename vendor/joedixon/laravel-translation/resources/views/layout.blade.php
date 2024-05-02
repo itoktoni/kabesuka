@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="{{ asset('/vendor/translation/css/main.css') }}">
 </head>
 <body>
-    
+
     <div id="app">
-        
+
         @include('translation::nav')
         @include('translation::notifications')
-        
+
         @yield('body')
-        
+
     </div>
-    
+
     <script src="{{ asset('/vendor/translation/js/app.js') }}"></script>
 </body>
 </html>

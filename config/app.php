@@ -97,7 +97,7 @@ return [
      */
 
     'url' => env('APP_URL', $url_hostname),
-    'asset_url' => env('APP_URL', $url_hostname) . '/public',
+    'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------

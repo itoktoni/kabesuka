@@ -58,17 +58,17 @@
                 <input type="text" readonly class="form-control input-sm" value="{{ $item->product_name ?? '' }}">
             </td>
             <td data-title="Awal" class="text-right col-lg-1">
-                <input type="text" tabindex="{{ $loop->iteration }}2" tabindex="{{ $loop->iteration }}2" name="detail[{{ $loop->index }}][temp_awal]" class="form-control input-sm text-right" value="{{ $awal ?? 0 }}">
+                <input type="text" tabindex="{{ $loop->iteration }}2" tabindex="{{ $loop->iteration }}2" name="detail[{{ $loop->index }}][temp_awal]" class="form-control input-sm text-right awal" value="{{ $awal ?? 0 }}">
 
             </td>
             <td data-title="Masuk" class="text-right col-lg-1">
-                <input type="text" name="detail[{{ $loop->index }}][temp_masuk]" tabindex="{{ $loop->iteration }}3" class="form-control input-sm text-right" value="{{ $masuk ?? 0 }}">
+                <input type="text" name="detail[{{ $loop->index }}][temp_masuk]" tabindex="{{ $loop->iteration }}3" class="form-control input-sm text-right masuk" value="{{ $masuk ?? 0 }}">
             </td>
             <td data-title="Akhir" class="text-right col-lg-1">
-                <input type="text" name="detail[{{ $loop->index }}][temp_akhir]" tabindex="{{ $loop->iteration }}4" class="form-control input-sm text-right" value="{{ $akhir ?? 0 }}">
+                <input type="text" name="detail[{{ $loop->index }}][temp_akhir]" tabindex="{{ $loop->iteration }}4" class="form-control input-sm text-right akhir" value="{{ $akhir ?? 0 }}">
             </td>
             <td data-title="Keluar" class="text-right col-lg-1">
-                <input type="text" name="detail[{{ $loop->index }}][temp_keluar]" class="form-control input-sm text-right" value="{{ $keluar ?? 0 }}">
+                <input type="text" name="detail[{{ $loop->index }}][temp_keluar]" readonly class="form-control input-sm text-right keluar" value="{{ $keluar ?? 0 }}">
             </td>
         </tr>
         @endforeach
@@ -80,6 +80,16 @@
 @push('javascript')
 <script>
     $(document).ready(function() {
+
+        function total(data){
+            var awal = $(data);
+            var masuk = $(data).closest('tr').find('.masuk');
+            var akhir = $(data).closest('tr').find('.akhir');
+            var keluar = $(data).closest('tr').find('.keluar');
+
+            var total = (numeral(awal.val()).value() + numeral(masuk.val()).value()) - numeral(akhir.val()).value();
+            keluar.val(total);
+        }
 
         $('.update').click(function(e) {
             e.preventDefault();
@@ -95,6 +105,18 @@
             var date = $("#date").val();
             var newUrl = window.location.origin + window.location.pathname +"?date=" + date + "&type=" + type+"&action=excel";
             window.location.href = newUrl;
+        });
+
+        $("#transaction").on('input', '.awal', function() {
+            total(this);
+        });
+
+        $("#transaction").on('input', '.masuk', function() {
+            total(this);
+        });
+
+        $("#transaction").on('input', '.akhir', function() {
+            total(this);
         });
     });
 </script>

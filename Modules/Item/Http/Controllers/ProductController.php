@@ -53,7 +53,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view(Views::create())->with($this->share());
+        return view(Views::create(config('page'), config('folder')))->with($this->share());
     }
 
     public function save(ProductRequest $request, CreateService $service)

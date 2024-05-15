@@ -82,7 +82,7 @@
     $(document).ready(function() {
 
         function total(data){
-            var awal = $(data);
+            var awal = $(data).closest('tr').find('.awal');
             var masuk = $(data).closest('tr').find('.masuk');
             var akhir = $(data).closest('tr').find('.akhir');
             var keluar = $(data).closest('tr').find('.keluar');

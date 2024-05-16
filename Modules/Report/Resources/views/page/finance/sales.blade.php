@@ -21,7 +21,7 @@ $(document).ready( function () {
     {!! Form::model($model, ['route'=>[Route::currentRouteName().'_export', 'code' => $model->{$model->getKeyName()}],'class'=>'form-horizontal','method'=> 'GET']) !!}
         <div class="panel panel-default">
             <header class="panel-heading">
-                <h2 class="panel-title">{{ __('Report') }} {{ __('Ala Carte') }}</h2>
+                <h2 class="panel-title">{{ __('Report') }} {{ __('A La Carte') }}</h2>
             </header>
 
             <div class="panel-body line">

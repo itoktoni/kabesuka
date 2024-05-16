@@ -3,7 +3,7 @@
     <table id="header">
         <tr>
             <td>
-                REKAP DETAIL ORDER KAFE
+                REKAP DETAIL ORDER CAFFE
             </td>
         </tr>
 

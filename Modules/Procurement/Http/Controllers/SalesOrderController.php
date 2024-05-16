@@ -341,7 +341,7 @@ class SalesOrderController extends Controller
         $pdf = PDF::loadView(Views::pdf(config('page'), config('folder'), 'print_invoice'), [
             'master' => $data,
             'detail' => $detail
-        ])->setPaper(array( 0 , 0 , 226 , 380 + ($detail->count() * 50)));;
+        ])->setPaper(array( 0 , 0 , 226 , 400 + ($detail->count() * 70)));;
 
         return $pdf->stream();
     }

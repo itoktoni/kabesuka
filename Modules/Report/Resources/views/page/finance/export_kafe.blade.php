@@ -3,7 +3,7 @@
     <table id="header">
         <tr>
             <td>
-                REKAP DETAIL ORDER ALA CARTE
+                REKAP DETAIL ORDER KAFE
             </td>
         </tr>
 
@@ -40,7 +40,7 @@
             @if($detail = $data->has_detail)
 
             @foreach($detail as $item)
-            @if($item->has_product->product_label == 'ALA_CARTE')
+            @if($item->has_product->product_label == 'KAFE')
 
             @php
                 $partner_id = false;

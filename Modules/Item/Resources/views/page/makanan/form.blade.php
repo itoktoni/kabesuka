@@ -51,15 +51,21 @@
 <div class="form-group">
 
     {!! Form::label('name', __('Kode Barang'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-4 col-sm-4 {{ $errors->has('product_sku') ? 'has-error' : ''}}">
+    <div class="col-md-2 col-sm-2 {{ $errors->has('product_sku') ? 'has-error' : ''}}">
         {!! Form::text('product_sku', null, ['class' => 'form-control']) !!}
         {!! $errors->first('product_sku', '<p class="help-block">:message</p>') !!}
     </div>
 
-    {!! Form::label('name', __('Unit'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
-    <div class="col-md-4 col-sm-4 {{ $errors->has('product_unit_code') ? 'has-error' : ''}}">
+    {!! Form::label('name', __('Unit'), ['class' => 'col-md-1 col-sm-1 control-label']) !!}
+    <div class="col-md-1 col-sm-1 {{ $errors->has('product_unit_code') ? 'has-error' : ''}}">
         {{ Form::select('product_unit_code', $unit, null, ['class'=> 'form-control']) }}
         {!! $errors->first('product_unit_code', '<p class="help-block">:message</p>') !!}
+    </div>
+
+    {!! Form::label('name', __('Label'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
+    <div class="col-md-4 col-sm-4 {{ $errors->has('product_label') ? 'has-error' : ''}}">
+        {{ Form::select('product_label', ['ALA_CARTE' => 'Ala Carte', 'KAFE' => 'Kabecafe'], null, ['class'=> 'form-control', 'id' => 'category', 'placeholder' => '']) }}
+        {!! $errors->first('product_label', '<p class="help-block">:message</p>') !!}
     </div>
 
 </div>

@@ -5,6 +5,7 @@ namespace Modules\Report\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Modules\Item\Dao\Repositories\ProductRepository;
 use Modules\Procurement\Dao\Enums\PurchaseStatus;
+use Modules\Procurement\Dao\Models\SoDetail;
 use Modules\Procurement\Dao\Repositories\PartnerRepository;
 use Modules\Procurement\Dao\Repositories\PurchaseRepository;
 use Modules\Procurement\Dao\Repositories\SupplierRepository;
@@ -74,6 +75,7 @@ class FinanceController extends Controller
         if ($name = request()->get('name')) {
             $preview = $repository->generate($name)->data();
         }
+
         return view(Views::form(__FUNCTION__, config('page'), config('folder')))
             ->with($this->share([
                 'model' => $repository,
@@ -84,6 +86,24 @@ class FinanceController extends Controller
     public function salesExport(ReportService $service, ReportSalesDetail $repository)
     {
         return $service->generate($repository, 'export_sales');
+    }
+
+    public function kafe(ReportSalesDetail $repository)
+    {
+        $preview = false;
+        if ($name = request()->get('name')) {
+            $preview = $repository->generate($name)->data();
+        }
+        return view(Views::form(__FUNCTION__, config('page'), config('folder')))
+            ->with($this->share([
+                'model' => $repository,
+                'preview' => $preview,
+            ]));
+    }
+
+    public function kafeExport(ReportService $service, ReportSalesDetail $repository)
+    {
+        return $service->generate($repository, 'export_kafe');
     }
 
     public function purchase(ReportPurchaseSummary $repository)

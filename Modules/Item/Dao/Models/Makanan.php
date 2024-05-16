@@ -39,6 +39,7 @@ class Makanan extends Model
         'product_updated_by',
         'product_deleted_by',
         'product_frontend',
+        'product_label',
     ];
 
     // public $with = ['has_supplier'];
@@ -71,7 +72,7 @@ class Makanan extends Model
         'product_sku' => [true => 'Kode Barang', 'width' => 100],
         'product_partner_id' => [false => 'Partner'],
         'category_name' => [true => 'Category'],
-        'partner_name' => [true => 'Partner'],
+        'product_label' => [true => 'Label'],
         'product_name' => [true => 'Name'],
         'product_image' => [false => 'Name'],
         'product_frontend' => [false => 'Name'],

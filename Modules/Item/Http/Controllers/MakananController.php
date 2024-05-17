@@ -71,7 +71,7 @@ class MakananController extends Controller
         return $service
             ->setModel(self::$model)
             ->EditColumn([
-               'makanan_partner_id' => 'mask_partner_name',
+               'product_label' => 'mask_label',
             ])
             ->make();
     }

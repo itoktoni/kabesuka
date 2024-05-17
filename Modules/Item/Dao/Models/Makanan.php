@@ -101,7 +101,7 @@ class Makanan extends Model
 
     public function getMaskLabelAttribute()
     {
-        return $this->product_label == 'KAFE' ? 'KABECAFE' : 'A LA CARTE';
+        return $this->product_label == 'KAFE' ? 'CAFE' : 'A LA CARTE';
     }
 
     public function mask_price()

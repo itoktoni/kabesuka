@@ -64,7 +64,7 @@
 
     {!! Form::label('name', __('Label'), ['class' => 'col-md-2 col-sm-2 control-label']) !!}
     <div class="col-md-4 col-sm-4 {{ $errors->has('product_label') ? 'has-error' : ''}}">
-        {{ Form::select('product_label', ['ALA_CARTE' => 'A LA CART', 'KAFE' => 'KABECAFE'], null, ['class'=> 'form-control', 'id' => 'category', 'placeholder' => '']) }}
+        {{ Form::select('product_label', ['ALA_CARTE' => 'A LA CART', 'KAFE' => 'CAFE'], null, ['class'=> 'form-control', 'id' => 'category', 'placeholder' => '']) }}
         {!! $errors->first('product_label', '<p class="help-block">:message</p>') !!}
     </div>
 

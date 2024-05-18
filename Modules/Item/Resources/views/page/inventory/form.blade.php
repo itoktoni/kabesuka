@@ -57,7 +57,7 @@
             else
             {
                 $dapet = $last[$item->product_id] ?? 0;
-                $awal = $dapet->keluar_malam ?? 0;
+                $awal = $dapet->akhir_malam ?? 0;
                 $masuk = 0;
                 $akhir = 0;
                 $keluar = 0;
@@ -80,7 +80,7 @@
             else
             {
                 $dapet = $last[$item->product_id] ?? 0;
-                $awal = $dapet->keluar_pagi ?? 0;
+                $awal = $dapet->akhir_pagi ?? 0;
                 $masuk = 0;
                 $akhir = 0;
                 $keluar = 0;

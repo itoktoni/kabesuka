@@ -3,6 +3,8 @@
 namespace Modules\Item\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Modules\Item\Dao\Models\Inventory;
 use Modules\Item\Dao\Models\Product;
 use Modules\Item\Dao\Repositories\InventoryRepository;
 use Modules\Item\Dao\Repositories\ReportInventory;
@@ -32,19 +34,44 @@ class InventoryController extends Controller
 
     private function share($data = [])
     {
+        $last = $database = [];
+
+        $detail = Product::where('product_warehouse', 1)->orderBy('product_name', 'ASC')->get();
+
         if ($date = request()->get('date')) {
-            $detail = Product::where('product_warehouse', 1)
+
+            $type = request()->get('type') == 'MLM' ? 'MLM' : 'PGI';
+            $reverse = request()->get('type') == 'MLM' ? 'PGI' : 'MLM';
+
+            $tgl = request()->get('type') == 'PGI' ? Carbon::parse($date)->subDay(1)->format('Y-m-d') : $date;
+
+            $database = Product::where('product_warehouse', 1)
                 ->leftJoinRelationship('has_inventory')
                 ->addSelect('inventory.*')
+                ->where('inventory_type', $type)
                 ->where('inventory_date', $date)
-                ->orderBy('product_name', 'ASC');
+                ->orderBy('product_name', 'ASC')
+                ->get()
+                ->mapWithKeys(function($item){
+                    return [$item->product_id => $item];
+                });
 
-        } else {
-            $detail = Product::where('product_warehouse', 1)->orderBy('product_name', 'ASC');
+            $last = Product::where('product_warehouse', 1)
+                ->joinRelationship('has_inventory')
+                ->addSelect('inventory.*')
+                ->where('inventory_type', $reverse)
+                ->where('inventory_date', $tgl)
+                ->orderBy('product_name', 'ASC')
+                ->get()
+                ->mapWithKeys(function($item){
+                    return [$item->product_id => $item];
+                });;
         }
 
         $view = [
-            'detail' => $detail->get(),
+            'database' => $database,
+            'detail' => $detail,
+            'last' => $last,
         ];
 
         return array_merge($view, $data);

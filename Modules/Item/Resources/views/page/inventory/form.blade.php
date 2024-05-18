@@ -40,16 +40,51 @@
         @endphp
         @foreach (old('detail') ?? $detail as $item)
         @php
-        if($type == 'PGI'){
-            $awal = $item->awal_pagi;
-            $masuk = $item->masuk_pagi;
-            $akhir = $item->akhir_pagi;
-            $keluar = $item->keluar_pagi;
-        }else if($type == 'MLM'){
-            $awal = $item->awal_malam;
-            $masuk = $item->masuk_malam;
-            $akhir = $item->akhir_malam;
-            $keluar = $item->keluar_malam;
+        if($type == 'PGI')
+        {
+            $masuk = $item->masuk_pagi ?? 0;
+            $akhir = $item->akhir_pagi ?? 0;
+            $keluar = $item->keluar_pagi ?? 0;
+
+            if($database->count() > 0)
+            {
+                $dapet = $database[$item->product_id];
+                $awal = $dapet->awal_pagi ?? 0;
+                $masuk = $dapet->masuk_pagi ?? 0;
+                $akhir = $dapet->akhir_pagi ?? 0;
+                $keluar = $dapet->keluar_pagi ?? 0;
+            }
+            else
+            {
+                $dapet = $last[$item->product_id] ?? 0;
+                $awal = $dapet->keluar_malam ?? 0;
+                $masuk = 0;
+                $akhir = 0;
+                $keluar = 0;
+            }
+        }
+        else
+        {
+            $masuk = $item->masuk_malam ?? 0;
+            $akhir = $item->akhir_malam ?? 0;
+            $keluar = $item->keluar_malam ?? 0;
+
+            if($database->count() > 0)
+            {
+                $dapet = $database[$item->product_id];
+                $awal = $dapet->awal_malam ?? 0;
+                $masuk = $dapet->masuk_malam ?? 0;
+                $akhir = $dapet->akhir_malam ?? 0;
+                $keluar = $dapet->keluar_malam ?? 0;
+            }
+            else
+            {
+                $dapet = $last[$item->product_id] ?? 0;
+                $awal = $dapet->keluar_pagi ?? 0;
+                $masuk = 0;
+                $akhir = 0;
+                $keluar = 0;
+            }
         }
         @endphp
         <tr>

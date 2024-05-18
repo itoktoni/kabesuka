@@ -69,7 +69,7 @@
             $akhir = $item->akhir_malam ?? 0;
             $keluar = $item->keluar_malam ?? 0;
 
-            if($database->count() > 0)
+            if(!empty($database) && $database->count() > 0)
             {
                 $dapet = $database[$item->product_id];
                 $awal = $dapet->awal_malam ?? 0;

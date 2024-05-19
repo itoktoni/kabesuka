@@ -126,12 +126,26 @@
             keluar.val(total);
         }
 
-        $('.update').click(function(e) {
-            e.preventDefault();
+        function redirect(){
             var type = $("#type option:selected").val();
             var date = $("#date").val();
             var newUrl = window.location.origin + window.location.pathname +"?date=" + date + "&type=" + type;
             window.location.href = newUrl;
+        }
+
+        $('.update').click(function(e) {
+            e.preventDefault();
+            redirect();
+        });
+
+        $('#type').change(function(e) {
+            e.preventDefault();
+            redirect();
+        });
+
+        $('#date').change(function(e) {
+            e.preventDefault();
+            redirect();
         });
 
         $('.print').click(function(e) {

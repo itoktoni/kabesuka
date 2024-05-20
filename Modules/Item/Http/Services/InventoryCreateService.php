@@ -19,7 +19,6 @@ class InventoryCreateService extends UpdateService
         $code = $date;
 
         $inventory = [];
-
         foreach($data->detail as $item){
             if($data->type == 'PGI'){
                 $merge = [
@@ -45,12 +44,23 @@ class InventoryCreateService extends UpdateService
                 'inventory_type' => $data->type,
             ];
 
-            $inventory[] = array_merge($key, $merge);
+            $inventory = array_merge($key, $merge);
 
-            // Inventory::updateOrCreate($key, $inventory);
+            $save = Inventory::where('inventory_code', $code)
+                ->where('inventory_product_id', $item['temp_id'])
+                ->where('inventory_date', $data->date)->count();
+
+            if($save > 0){
+                Inventory::where('inventory_code', $code)
+                ->where('inventory_product_id', $item['temp_id'])
+                ->where('inventory_date', $data->date)
+                ->update($inventory);
+            }
+            else{
+                Inventory::create($inventory);
+            }
         }
 
-        Inventory::upsert($inventory, ['inventory_code', 'inventory_product_id', 'inventory_date']);
         $check = true;
 
         if (isset($check) && $check) {

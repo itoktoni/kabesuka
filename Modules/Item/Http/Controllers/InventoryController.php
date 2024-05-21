@@ -48,7 +48,6 @@ class InventoryController extends Controller
             $database = Product::where('product_warehouse', 1)
                 ->leftJoinRelationship('has_inventory')
                 ->addSelect('inventory.*')
-                ->where('inventory_type', $type)
                 ->where('inventory_date', $date)
                 ->orderBy('product_name', 'ASC')
                 ->get()
@@ -59,13 +58,13 @@ class InventoryController extends Controller
             $last = Product::where('product_warehouse', 1)
                 ->joinRelationship('has_inventory')
                 ->addSelect('inventory.*')
-                ->where('inventory_type', $reverse)
+                // ->where('inventory_type', $reverse)
                 ->where('inventory_date', $tgl)
                 ->orderBy('product_name', 'ASC')
                 ->get()
                 ->mapWithKeys(function($item){
                     return [$item->product_id => $item];
-                });;
+                });
         }
 
         $view = [

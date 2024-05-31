@@ -49,15 +49,15 @@
             if($database->count() > 0)
             {
                 $dapet = $database[$item->product_id] ?? false;
-                $awal = floatval($dapet->awal_pagi) ?? 0;
-                $masuk = floatval($dapet->masuk_pagi) ?? 0;
-                $akhir = floatval($dapet->akhir_pagi) ?? 0;
-                $keluar = floatval($dapet->keluar_pagi) ?? 0;
+                $awal = $dapet->awal_pagi ?? 0;
+                $masuk = $dapet->masuk_pagi ?? 0;
+                $akhir = $dapet->akhir_pagi ?? 0;
+                $keluar = $dapet->keluar_pagi ?? 0;
             }
             else
             {
                 $dapet = $last[$item->product_id] ?? 0;
-                $awal = floatval($dapet->akhir_malam) ?? 0;
+                $awal = $dapet->akhir_malam ?? 0;
                 $masuk = 0;
                 $akhir = 0;
                 $keluar = 0;
@@ -72,21 +72,21 @@
             if(!empty($database) && $database->count() > 0)
             {
                 $dapet = $database[$item->product_id] ?? false;
-                $awal = floatval($dapet->awal_malam) ?? 0;
+                $awal = $dapet->awal_malam ?? 0;
 
                 if($type == 'MLM'){
                     $dapet = $last[$item->product_id] ?? 0;
-                    $awal = floatval($dapet->akhir_pagi) ?? 0;
+                    $awal = $dapet->akhir_pagi ?? 0;
                 }
 
-                $masuk = floatval($dapet->masuk_malam) ?? 0;
-                $akhir = floatval($dapet->akhir_malam) ?? 0;
-                $keluar = floatval($dapet->keluar_malam) ?? 0;
+                $masuk = $dapet->masuk_malam ?? 0;
+                $akhir = $dapet->akhir_malam ?? 0;
+                $keluar = $dapet->keluar_malam ?? 0;
             }
             else
             {
                 $dapet = $last[$item->product_id] ?? false;
-                $awal = floatval($dapet->akhir_pagi) ?? 0;
+                $awal = $dapet->akhir_pagi ?? 0;
                 $masuk = 0;
                 $akhir = 0;
                 $keluar = 0;

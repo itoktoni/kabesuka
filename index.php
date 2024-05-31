@@ -71,3 +71,6 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+
+ini_set('max_input_vars', 5000);
+

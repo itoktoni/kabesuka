@@ -49,15 +49,15 @@
             if($database->count() > 0)
             {
                 $dapet = $database[$item->product_id] ?? false;
-                $awal = number_format($dapet->awal_pagi, 3) ?? 0;
-                $masuk = number_format($dapet->masuk_pagi, 3) ?? 0;
-                $akhir = number_format($dapet->akhir_pagi, 3) ?? 0;
-                $keluar = number_format($dapet->keluar_pagi, 3) ?? 0;
+                $awal = floatval($dapet->awal_pagi) ?? 0;
+                $masuk = floatval($dapet->masuk_pagi) ?? 0;
+                $akhir = floatval($dapet->akhir_pagi) ?? 0;
+                $keluar = floatval($dapet->keluar_pagi) ?? 0;
             }
             else
             {
                 $dapet = $last[$item->product_id] ?? 0;
-                $awal = number_format($dapet->akhir_malam, 3) ?? 0;
+                $awal = floatval($dapet->akhir_malam) ?? 0;
                 $masuk = 0;
                 $akhir = 0;
                 $keluar = 0;
@@ -72,21 +72,21 @@
             if(!empty($database) && $database->count() > 0)
             {
                 $dapet = $database[$item->product_id] ?? false;
-                $awal = number_format($dapet->awal_malam, 3) ?? 0;
+                $awal = floatval($dapet->awal_malam) ?? 0;
 
                 if($type == 'MLM'){
                     $dapet = $last[$item->product_id] ?? 0;
-                    $awal = number_format($dapet->akhir_pagi, 3) ?? 0;
+                    $awal = floatval($dapet->akhir_pagi) ?? 0;
                 }
 
-                $masuk = number_format($dapet->masuk_malam, 3) ?? 0;
-                $akhir = number_format($dapet->akhir_malam, 3) ?? 0;
-                $keluar = number_format($dapet->keluar_malam, 3) ?? 0;
+                $masuk = floatval($dapet->masuk_malam) ?? 0;
+                $akhir = floatval($dapet->akhir_malam) ?? 0;
+                $keluar = floatval($dapet->keluar_malam) ?? 0;
             }
             else
             {
                 $dapet = $last[$item->product_id] ?? false;
-                $awal = $dapet->akhir_pagi ?? 0;
+                $awal = floatval($dapet->akhir_pagi) ?? 0;
                 $masuk = 0;
                 $akhir = 0;
                 $keluar = 0;
@@ -103,13 +103,13 @@
 
             </td>
             <td data-title="Masuk" class="text-right col-lg-1">
-                <input type="text" name="detail[{{ $loop->index }}][temp_masuk]" tabindex="{{ $loop->iteration }}3" class="form-control input-sm text-right masuk" value="{{ $masuk ?? 0 }}">
+                <input type="text" name="detail[{{ $loop->index }}][temp_masuk]" tabindex="{{ $loop->iteration }}3" class="form-control input-sm text-right masuk" value="{{ floatval($masuk) }}">
             </td>
             <td data-title="Akhir" class="text-right col-lg-1">
-                <input type="text" name="detail[{{ $loop->index }}][temp_akhir]" tabindex="{{ $loop->iteration }}4" class="form-control input-sm text-right akhir" value="{{ $akhir ?? 0 }}">
+                <input type="text" name="detail[{{ $loop->index }}][temp_akhir]" tabindex="{{ $loop->iteration }}4" class="form-control input-sm text-right akhir" value="{{ floatval($akhir) ?? 0 }}">
             </td>
             <td data-title="Keluar" class="text-right col-lg-1">
-                <input type="text" name="detail[{{ $loop->index }}][temp_keluar]" readonly class="form-control input-sm text-right keluar" value="{{ $keluar ?? 0 }}">
+                <input type="text" name="detail[{{ $loop->index }}][temp_keluar]" readonly class="form-control input-sm text-right keluar" value="{{ floatval($keluar) ?? 0 }}">
             </td>
         </tr>
         @endforeach
@@ -129,7 +129,7 @@
             var keluar = $(data).closest('tr').find('.keluar');
 
             var total = (numeral(awal.val()).value() + numeral(masuk.val()).value()) - numeral(akhir.val()).value();
-            keluar.val(total);
+            keluar.val((Math.round(total * 100) / 100).toFixed(2));
         }
 
         function redirect(){

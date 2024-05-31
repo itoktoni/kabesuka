@@ -49,15 +49,15 @@
             if($database->count() > 0)
             {
                 $dapet = $database[$item->product_id] ?? false;
-                $awal = $dapet->awal_pagi ?? 0;
-                $masuk = $dapet->masuk_pagi ?? 0;
-                $akhir = $dapet->akhir_pagi ?? 0;
-                $keluar = $dapet->keluar_pagi ?? 0;
+                $awal = number_format($dapet->awal_pagi, 3) ?? 0;
+                $masuk = number_format($dapet->masuk_pagi, 3) ?? 0;
+                $akhir = number_format($dapet->akhir_pagi, 3) ?? 0;
+                $keluar = number_format($dapet->keluar_pagi, 3) ?? 0;
             }
             else
             {
                 $dapet = $last[$item->product_id] ?? 0;
-                $awal = $dapet->akhir_malam ?? 0;
+                $awal = number_format($dapet->akhir_malam, 3) ?? 0;
                 $masuk = 0;
                 $akhir = 0;
                 $keluar = 0;
@@ -72,16 +72,16 @@
             if(!empty($database) && $database->count() > 0)
             {
                 $dapet = $database[$item->product_id] ?? false;
-                $awal = $dapet->awal_malam ?? 0;
+                $awal = number_format($dapet->awal_malam, 3) ?? 0;
 
                 if($type == 'MLM'){
                     $dapet = $last[$item->product_id] ?? 0;
-                    $awal = $dapet->akhir_pagi ?? 0;
+                    $awal = number_format($dapet->akhir_pagi, 3) ?? 0;
                 }
 
-                $masuk = $dapet->masuk_malam ?? 0;
-                $akhir = $dapet->akhir_malam ?? 0;
-                $keluar = $dapet->keluar_malam ?? 0;
+                $masuk = number_format($dapet->masuk_malam, 3) ?? 0;
+                $akhir = number_format($dapet->akhir_malam, 3) ?? 0;
+                $keluar = number_format($dapet->keluar_malam, 3) ?? 0;
             }
             else
             {

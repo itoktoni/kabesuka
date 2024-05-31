@@ -21,19 +21,31 @@ class InventoryCreateService extends UpdateService
         $inventory = [];
         foreach($data->detail as $item){
             if($data->type == 'PGI'){
+
+                $temp_awal = $item['temp_awal'] ?? 0;
+                $temp_masuk = $item['temp_masuk'] ?? 0;
+                $temp_akhir = $item['temp_akhir'] ?? 0;
+                $temp_awal = $item['temp_awal'] ?? 0;
+
                 $merge = [
-                    'awal_pagi' => $item['temp_awal'],
-                    'masuk_pagi' => $item['temp_masuk'],
-                    'akhir_pagi' => $item['temp_akhir'],
-                    'keluar_pagi' => ($item['temp_awal'] + $item['temp_masuk']) - $item['temp_akhir'],
+                    'awal_pagi' => $temp_awal,
+                    'masuk_pagi' => $temp_masuk,
+                    'akhir_pagi' => $temp_akhir,
+                    'keluar_pagi' => ($temp_awal + $temp_masuk) - $temp_akhir,
                 ];
             }
             else {
+
+                $temp_awal = $item['temp_awal'] ?? 0;
+                $temp_masuk = $item['temp_masuk'] ?? 0;
+                $temp_akhir = $item['temp_akhir'] ?? 0;
+                $temp_awal = $item['temp_awal'] ?? 0;
+
                 $merge = [
-                    'awal_malam' => $item['temp_awal'],
-                    'masuk_malam' => $item['temp_masuk'],
-                    'akhir_malam' => $item['temp_akhir'],
-                    'keluar_malam' => ($item['temp_awal'] + $item['temp_masuk']) - $item['temp_akhir'],
+                    'awal_malam' => $temp_awal,
+                    'masuk_malam' => $temp_masuk,
+                    'akhir_malam' => $temp_akhir,
+                    'keluar_malam' => ($temp_awal + $temp_masuk) - $temp_akhir,
                 ];
             }
 

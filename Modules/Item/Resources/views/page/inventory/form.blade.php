@@ -48,7 +48,7 @@
 
             if($database->count() > 0)
             {
-                $dapet = $database[$item->product_id];
+                $dapet = $database[$item->product_id] ?? false;
                 $awal = $dapet->awal_pagi ?? 0;
                 $masuk = $dapet->masuk_pagi ?? 0;
                 $akhir = $dapet->akhir_pagi ?? 0;
@@ -71,7 +71,7 @@
 
             if(!empty($database) && $database->count() > 0)
             {
-                $dapet = $database[$item->product_id];
+                $dapet = $database[$item->product_id] ?? false;
                 $awal = $dapet->awal_malam ?? 0;
 
                 if($type == 'MLM'){
@@ -85,7 +85,7 @@
             }
             else
             {
-                $dapet = $last[$item->product_id] ?? 0;
+                $dapet = $last[$item->product_id] ?? false;
                 $awal = $dapet->akhir_pagi ?? 0;
                 $masuk = 0;
                 $akhir = 0;

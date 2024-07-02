@@ -82,6 +82,7 @@ class Po extends Model
         'po_code' => [true => 'Purchase Code', 'width' => 130],
         'supplier_name' => [true => 'Supplier Name'],
         'po_date_order' => [true => 'Date', 'width' => 60],
+        'po_created_at' => [false => 'Created At', 'width' => 50],
         'po_updated_at' => [false => 'Last At', 'width' => 50],
         'name' => [false => 'Last By', 'width' => 60],
         'po_sum_value' => [false => 'Value', 'width' => 80],

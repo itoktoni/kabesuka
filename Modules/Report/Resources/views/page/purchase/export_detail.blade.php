@@ -19,6 +19,7 @@
             <tr>
                 <th class="text-left" style="width:3%">No.</th>
                 <th class="text-left" style="width:12%">No. Order</th>
+                <th class="text-left" style="width:12%">Tanggal</th>
                 <th class="text-left" style="width:20%">Nama Supplier</th>
                 <th class="text-left" style="width:20%">Kategori</th>
                 <th class="text-left" style="width:20%">Nama Product</th>
@@ -47,6 +48,7 @@ $total = $total + $item->po_detail_total;
             <tr>
                 <td data-title="No">{{ $number++ }} </td>
                 <td data-title="No. Order">{{ $data->po_code ?? '' }} </td>
+                <td data-title="Tanggal">{{ $data->po_created_at ?? '' }} </td>
                 <td data-title="Nama Supplier">{{ $data->supplier_name ?? '' }} </td>
                 <td data-title="Nama Product">{{ $item->has_product->has_category->category_name ?? '' }} </td>
                 <td data-title="Nama Product">{{ $item->has_product->product_name ?? '' }} </td>
@@ -61,7 +63,7 @@ $total = $total + $item->po_detail_total;
             @endif
 
             <tr>
-                <td class="total" data-title="" colspan="7">Grand Total</td>
+                <td class="total" data-title="" colspan="8">Grand Total</td>
                 <td class="total text-right" data-title="Grand Total">{{ number_format($total) }}</td>
             </tr>
         </tbody>

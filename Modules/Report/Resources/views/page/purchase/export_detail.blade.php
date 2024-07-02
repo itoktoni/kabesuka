@@ -20,6 +20,7 @@
                 <th class="text-left" style="width:3%">No.</th>
                 <th class="text-left" style="width:12%">No. Order</th>
                 <th class="text-left" style="width:20%">Nama Supplier</th>
+                <th class="text-left" style="width:20%">Kategori</th>
                 <th class="text-left" style="width:20%">Nama Product</th>
                 <th class="text-right" style="width:5%">Qty</th>
                 <th class="text-right" style="width:7%">Harga</th>
@@ -47,6 +48,7 @@ $total = $total + $item->po_detail_total;
                 <td data-title="No">{{ $number++ }} </td>
                 <td data-title="No. Order">{{ $data->po_code ?? '' }} </td>
                 <td data-title="Nama Supplier">{{ $data->supplier_name ?? '' }} </td>
+                <td data-title="Nama Product">{{ $item->has_product->has_category->category_name ?? '' }} </td>
                 <td data-title="Nama Product">{{ $item->has_product->product_name ?? '' }} </td>
                 <td data-title="Qty" class="text-right">{{ $item->po_detail_qty ?? '' }} </td>
                 <td data-title="Harga" class="text-right">{{ number_format($item->po_detail_price) ?? '' }} </td>

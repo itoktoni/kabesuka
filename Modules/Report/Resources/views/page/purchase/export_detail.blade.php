@@ -61,7 +61,7 @@ $total = $total + $item->po_detail_total;
             @endif
 
             <tr>
-                <td class="total" data-title="" colspan="6">Grand Total</td>
+                <td class="total" data-title="" colspan="7">Grand Total</td>
                 <td class="total text-right" data-title="Grand Total">{{ number_format($total) }}</td>
             </tr>
         </tbody>

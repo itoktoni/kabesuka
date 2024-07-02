@@ -48,7 +48,7 @@ $total = $total + $item->po_detail_total;
             <tr>
                 <td data-title="No">{{ $number++ }} </td>
                 <td data-title="No. Order">{{ $data->po_code ?? '' }} </td>
-                <td data-title="Tanggal">{{ $data->po_created_at ?? '' }} </td>
+                <td data-title="Tanggal">{{ $data->po_created_at->format('d/m/Y') ?? '' }} </td>
                 <td data-title="Nama Supplier">{{ $data->supplier_name ?? '' }} </td>
                 <td data-title="Nama Product">{{ $item->has_product->has_category->category_name ?? '' }} </td>
                 <td data-title="Nama Product">{{ $item->has_product->product_name ?? '' }} </td>

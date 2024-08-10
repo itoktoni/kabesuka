@@ -58,9 +58,9 @@
                         !!}
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2 header-add">
                         <h2 class="panel-title text-right">
-                            <span style="margin-top:0px" id="add" class="btn btn-primary btn-block detail">Add Detail</span>
+                            <span style="margin-top:0px" id="tambah" class="btn btn-primary btn-block detail">Add Detail</span>
                         </h2>
                     </div>
 

@@ -1,7 +1,17 @@
+
 <x-date :array="['date']" />
 <x-mask :array="['number', 'money']" />
 
 @push('javascript')
+
+<style>
+    @media only screen and (max-width: 450px) {
+        .header-add{
+            margin-top: 20px
+        }
+    }
+</style>
+
 <script>
     $(document).ready(function() {
 
@@ -393,7 +403,7 @@
 
         });
 
-        $("#add").click(function(e) {
+        $("#tambah").click(function(e) {
             addDetail(e);
             e.preventDefault();
         });
